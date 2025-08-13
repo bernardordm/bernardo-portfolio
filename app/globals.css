@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 10% 8%; /* Deep Black */
+    --foreground: 210 40% 98%; /* Off-white */
+
+    --card: 220 10% 12%; /* Darker Gray for cards */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 10% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 140 80% 40%; /* Vibrant Green */
+    --primary-foreground: 210 40% 98%; /* White for primary text */
+
+    --secondary: 220 10% 15%; /* Slightly lighter gray for secondary elements */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%; /* Gray for muted text */
+
+    --accent: 220 10% 20%; /* Accent background */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 10% 25%; /* Light gray border */
+    --input: 220 10% 15%;
+    --ring: 140 80% 40%; /* Primary green for ring */
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+}
+
+/* Custom scrollbar for futuristic feel */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+  border: 3px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+  filter: brightness(1.2);
+}
