@@ -31,7 +31,7 @@ export function AboutMeSection({ inView }: AboutMeSectionProps) {
         >
           Olá! Sou Bernardo, um desenvolvedor fullstack e entusiasta de tecnologia, residente da região metropolitana de
           Belo Horizonte. Desde os 14 anos, quando comecei a explorar o mundo da programação, me apaixonei pelo
-          potencial transformador da tecnologia. Aos 18, continuo dedicado a essa jornada, sempre buscando soluções
+          potencial transformador da tecnologia. Aos 19, continuo dedicado a essa jornada, sempre buscando soluções
           criativas e inovadoras para os desafios que encontro.
         </p>
         <div className="space-y-4">
