@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { CodeIcon, UserIcon, LightbulbIcon, BriefcaseIcon, FolderGit2Icon, SparklesIcon } from "lucide-react"
+import { CodeIcon, UserIcon, LightbulbIcon, BriefcaseIcon, FolderGit2Icon, SparklesIcon, GraduationCapIcon } from "lucide-react"
 
 interface HeaderProps {
   currentSection: string
@@ -12,6 +12,7 @@ export function Header({ currentSection }: HeaderProps) {
     { id: "skills", name: "Habilidades", icon: LightbulbIcon },
     { id: "experience", name: "Experiência", icon: BriefcaseIcon },
     { id: "projects", name: "Projetos", icon: FolderGit2Icon },
+    { id: "academic", name: "Acadêmico", icon: GraduationCapIcon },
     { id: "interests", name: "Interesses", icon: SparklesIcon },
   ]
 

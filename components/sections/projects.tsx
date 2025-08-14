@@ -11,28 +11,31 @@ interface ProjectsSectionProps {
 export function ProjectsSection({ inView }: ProjectsSectionProps) {
   const projects = [
     {
-      title: "Sistema de Gestão de Tarefas",
+      title: "Java Parking",
       description:
-        "Uma aplicação fullstack para gerenciamento de tarefas, com autenticação de usuários, CRUD completo e interface intuitiva.",
-      technologies: ["React", "Node.js", "Express", "MongoDB"],
-      githubLink: "#", // Substitua pelo link real do GitHub
-      liveLink: "#", // Substitua pelo link real do projeto ao vivo
+        "Sistema de controle de estacionamento desenvolvido em Java com foco em Programação Orientada a Objetos. Implementa conceitos fundamentais como polimorfismo, encapsulamento e divisão de responsabilidades, seguindo o padrão MVC com DTOs e interface gráfica em JavaFX.",
+      technologies: ["Java", "Spring Boot", "JavaFX", "MVC", "POO", "DTOs"],
+      githubLink: "https://github.com/bernardordm/Java-Parking",
+      liveLink: "#",
+      featured: true
     },
     {
-      title: "E-commerce de Produtos Digitais",
+      title: "Gnosi - Plataforma de Cursos",
       description:
-        "Plataforma de e-commerce com carrinho de compras, sistema de pagamento integrado e painel administrativo para gestão de produtos.",
-      technologies: ["Next.js", "Stripe", "PostgreSQL", "Tailwind CSS"],
+        "Plataforma gratuita de cursos online com arquitetura fullstack robusta. Backend desenvolvido em Java Spring Boot e frontend em React.js, aplicando rigorosamente os princípios de POO, padrão MVC e boas práticas de desenvolvimento de software.",
+      technologies: ["Java", "Spring Boot", "React.js", "PostgreSQL", "MVC", "POO"],
       githubLink: "#",
       liveLink: "#",
+      featured: true
     },
     {
-      title: "API de Previsão do Tempo",
+      title: "Fabiana Móveis - Sistema de Gestão",
       description:
-        "Uma API RESTful que fornece dados de previsão do tempo em tempo real, consumindo dados de serviços externos e otimizando respostas.",
-      technologies: ["Python", "FastAPI", "Docker"],
+        "Sistema completo de gestão desenvolvido para cliente real, incluindo rastreamento de entregas via Google Maps API, geração de relatórios, cadastro de funcionários e controle de entregas. Solução fullstack com backend em Node.js/NestJS e frontend em Next.js.",
+      technologies: ["Node.js", "NestJS", "Next.js", "Google Maps API", "PostgreSQL", "TypeScript"],
       githubLink: "#",
       liveLink: "#",
+      featured: true
     },
   ]
 
@@ -44,14 +47,14 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
           style={{ backgroundSize: "200px 200px" }}
         ></div>
       </div>
-      <div className="relative z-10 space-y-8 max-w-5xl">
+      <div className="relative z-10 space-y-8 max-w-6xl">
         <h2
           className={cn(
             "text-4xl md:text-5xl font-bold text-primary tracking-tight",
             inView ? "animate-fade-in-up" : "opacity-0",
           )}
         >
-          DEPLOYED CONSTRUCTS
+          PROJETOS DESENVOLVIDOS
         </h2>
         <p
           className={cn(
@@ -59,62 +62,87 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
             inView ? "animate-fade-in-up delay-200" : "opacity-0",
           )}
         >
-          Projetos desenvolvidos, prontos para demonstração e análise.
+          Projetos que demonstram minha evolução técnica e aplicação prática de conceitos fundamentais da engenharia de software.
         </p>
         <div className="grid gap-8 py-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <Card
               key={index}
               className={cn(
-                "flex flex-col h-full bg-card border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300",
+                "flex flex-col h-full border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 relative overflow-hidden",
+                project.featured ? "bg-gradient-to-br from-card to-primary/5" : "bg-card",
                 inView ? "animate-fade-in-up" : "opacity-0",
               )}
               style={{ animationDelay: `${400 + index * 200}ms` }}
             >
-              <CardHeader>
+              {project.featured && (
+                <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-bl-md font-semibold">
+                  DESTAQUE
+                </div>
+              )}
+              <CardHeader className="pb-4">
                 <div className="flex items-center space-x-2">
                   <RocketIcon className="w-6 h-6 text-primary" />
                   <CardTitle className="text-xl font-bold text-foreground">{project.title}</CardTitle>
                 </div>
-                <CardDescription className="text-muted-foreground">{project.description}</CardDescription>
+                <CardDescription className="text-muted-foreground text-sm leading-relaxed">
+                  {project.description}
+                </CardDescription>
               </CardHeader>
               <CardContent className="flex flex-col justify-between flex-grow">
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-1.5 mb-4">
                   {project.technologies.map((tech, techIndex) => (
                     <Badge
                       key={techIndex}
                       variant="secondary"
-                      className="bg-primary/20 text-primary text-sm px-2 py-0.5 border border-primary"
+                      className={cn(
+                        "text-xs px-2 py-0.5 border",
+                        tech === "POO" || tech === "MVC" || tech === "DTOs" 
+                          ? "bg-green-500/20 text-green-400 border-green-500" 
+                          : "bg-primary/20 text-primary border-primary"
+                      )}
                     >
                       {tech}
                     </Badge>
                   ))}
                 </div>
                 <div className="flex gap-2 mt-auto">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-primary text-primary hover:bg-primary/10 bg-transparent"
-                  >
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1"
+                  {project.githubLink !== "#" ? (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-primary text-primary hover:bg-primary/10 bg-transparent flex-1"
+                      onClick={() => window.open(project.githubLink, "_blank")}
                     >
-                      <GithubIcon className="w-4 h-4" /> GitHub
-                    </a>
-                  </Button>
-                  <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1"
+                      <GithubIcon className="w-4 h-4 mr-1" /> GitHub
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-gray-500 text-gray-500 cursor-not-allowed flex-1"
+                      disabled
                     >
-                      <ExternalLinkIcon className="w-4 h-4" /> Live
-                    </a>
-                  </Button>
+                      <GithubIcon className="w-4 h-4 mr-1" /> Privado
+                    </Button>
+                  )}
+                  {project.liveLink !== "#" ? (
+                    <Button 
+                      size="sm" 
+                      className="bg-primary text-primary-foreground hover:bg-primary/90 flex-1"
+                      onClick={() => window.open(project.liveLink, "_blank")}
+                    >
+                      <ExternalLinkIcon className="w-4 h-4 mr-1" /> Live
+                    </Button>
+                  ) : (
+                    <Button 
+                      size="sm" 
+                      className="bg-gray-500 text-gray-100 cursor-not-allowed flex-1"
+                      disabled
+                    >
+                      <ExternalLinkIcon className="w-4 h-4 mr-1" /> Em Breve
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
