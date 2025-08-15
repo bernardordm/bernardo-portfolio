@@ -7,9 +7,10 @@ Este projeto é um portfolio pessoal moderno e interativo que demonstra as habil
 ### Wireframe
 O wireframe foi desenvolvido no Figma com foco em média fidelidade, apresentando a estrutura visual e organizacional do portfolio:
 
+**🔗 [Visualizar Wireframe e Protótipo no Figma](https://www.figma.com/design/GtvbLxqT0sGX1DkHYYAfrm/Portf%C3%B3lio-Bernardo-de-Resende?node-id=0-1&t=LpKho8qNMrtreq6j-1)**
+
 ![Wireframe do Portfolio](docs/wireframe.png)
 
-**🔗 [Visualizar Wireframe no Figma](https://www.figma.com/design/GtvbLxqT0sGX1DkHYYAfrm/Portf%C3%B3lio-Bernardo-de-Resende?node-id=0-1&t=LpKho8qNMrtreq6j-1)**
 
 ### Protótipo Funcional
 O protótipo implementado demonstra a versão funcional do design:
