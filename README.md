@@ -2,20 +2,21 @@
 
 Este projeto é um portfolio pessoal moderno e interativo que demonstra as habilidades, experiências e projetos de Bernardo de Resende, desenvolvedor fullstack e estudante de Engenharia de Software. O website apresenta uma interface futurística com animações suaves e design responsivo, proporcionando uma experiência envolvente para mostrar competências técnicas e trajetória profissional.
 
+**🌐 [Acessar Site Hospedado](https://bernardo-portifolio-liard.vercel.app/)**
 ## 🎨 Design e Prototipação
 
 ### Wireframe
 O wireframe foi desenvolvido no Figma com foco em média fidelidade, apresentando a estrutura visual e organizacional do portfolio:
 
-**🔗 [Visualizar Wireframe e Protótipo no Figma](https://www.figma.com/design/GtvbLxqT0sGX1DkHYYAfrm/Portf%C3%B3lio-Bernardo-de-Resende?node-id=0-1&t=LpKho8qNMrtreq6j-1)**
-
 ![Wireframe do Portfolio](docs/wireframe.png)
 
+**🔗 [Visualizar Wireframe no Figma](https://www.figma.com/design/GtvbLxqT0sGX1DkHYYAfrm/Portf%C3%B3lio-Bernardo-de-Resende?node-id=0-1&t=LpKho8qNMrtreq6j-1)**
 
 ### Protótipo Funcional
 O protótipo implementado demonstra a versão funcional do design:
 
 ![Protótipo do Portfolio](docs/prototype.png)
+
 
 ## 🚀 Funcionalidades
 
@@ -201,5 +202,3 @@ Sistema completo desenvolvido para cliente real com rastreamento via Google Maps
 - [Email](mailto:bernardordm@example.com)
 
 ---
-
-**⭐ Se este projeto te ajudou, considere dar uma estrela!**
