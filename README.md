@@ -15,7 +15,7 @@ Este projeto é um portfolio pessoal moderno e interativo que demonstra as habil
 
 ## 🎯 Seções do Portfolio
 
-1. **Hero/Resume**: Apresentação principal com call-to-actions
+1. **Resume**: Apresentação principal com call-to-actions
 2. **Sobre Mim**: História pessoal e trajetória acadêmica/profissional
 3. **Skills e Tecnologias**: Habilidades técnicas organizadas por categorias
 4. **Experiências**: Histórico profissional e acadêmico
@@ -43,56 +43,56 @@ Este projeto é um portfolio pessoal moderno e interativo que demonstra as habil
 ```
 bernardo-portfolio/
 │
-├── 📁 app/                          # Diretório principal do Next.js App Router
-│   ├── globals.css                  # Estilos globais e variáveis CSS
-│   ├── layout.tsx                   # Layout principal da aplicação
-│   └── page.tsx                     # Página principal com todas as seções
+├── 📁 app/                          
+│   ├── globals.css                  
+│   ├── layout.tsx                   
+│   └── page.tsx                     
 │
-├── 📁 components/                   # Componentes React reutilizáveis
-│   ├── header.tsx                   # Header fixo com navegação
-│   ├── theme-provider.tsx          # Provider para gerenciamento de temas
+├── 📁 components/                   
+│   ├── header.tsx                   
+│   ├── theme-provider.tsx          
 │   │
-│   ├── 📁 sections/                # Seções específicas do portfolio
-│   │   ├── resume.tsx              # Seção hero/apresentação
-│   │   ├── about-me.tsx            # Seção sobre mim
-│   │   ├── skills.tsx              # Seção de habilidades técnicas
-│   │   ├── experiences.tsx         # Seção de experiências profissionais
-│   │   ├── projects.tsx            # Seção de projetos desenvolvidos
-│   │   ├── academic.tsx            # Seção acadêmica e pesquisas
-│   │   ├── interests.tsx           # Seção de interesses pessoais
-│   │   └── contact.tsx             # Seção de contato
+│   ├── 📁 sections/                
+│   │   ├── resume.tsx              
+│   │   ├── about-me.tsx            
+│   │   ├── skills.tsx              
+│   │   ├── experiences.tsx         
+│   │   ├── projects.tsx            
+│   │   ├── academic.tsx            
+│   │   ├── interests.tsx           
+│   │   └── contact.tsx             
 │   │
-│   └── 📁 ui/                      # Componentes UI base (shadcn/ui)
-│       ├── button.tsx              # Componente de botão
-│       ├── card.tsx                # Componente de card
-│       ├── badge.tsx               # Componente de badge
-│       └── sidebar.tsx             # Componente de sidebar
+│   └── 📁 ui/                      
+│       ├── button.tsx             
+│       ├── card.tsx                
+│       ├── badge.tsx              
+│       └── sidebar.tsx             
 │
-├── 📁 hooks/                       # Hooks React personalizados
-│   ├── use-mobile.tsx              # Hook para detecção de dispositivos móveis
-│   └── use-toast.ts                # Hook para sistema de notificações
+├── 📁 hooks/                      
+│   ├── use-mobile.tsx              
+│   └── use-toast.ts                
 │
-├── 📁 lib/                         # Utilitários e funções auxiliares
-│   └── utils.ts                    # Funções utilitárias (cn, clsx, etc.)
+├── 📁 lib/                         
+│   └── utils.ts                    
 │
-├── 📁 public/                      # Arquivos estáticos
-│   ├── abstract-grid.png           # Imagem de fundo em grid
-│   ├── futuristic-circuit.png      # Textura de circuito futurístico
-│   ├── futuristic-grid.png         # Grid futurístico animado
-│   └── placeholder-logo.png        # Logo placeholder
+├── 📁 public/                     
+│   ├── abstract-grid.png           
+│   ├── futuristic-circuit.png      
+│   ├── futuristic-grid.png         
+│   └── placeholder-logo.png        
 │
-├── 📁 styles/                      # Estilos adicionais
+├── 📁 styles/                     
 │
-├── 📁 .next/                       # Build files do Next.js (auto-gerado)
+├── 📁 .next/                       
 │
-├── components.json                 # Configuração do shadcn/ui
-├── next.config.mjs                 # Configuração do Next.js
-├── tailwind.config.ts              # Configuração do Tailwind CSS
-├── tsconfig.json                   # Configuração do TypeScript
-├── postcss.config.mjs              # Configuração do PostCSS
-├── package.json                    # Dependências e scripts
-├── pnpm-lock.yaml                  # Lock file do pnpm
-└── README.md                       # Documentação do projeto
+├── components.json                 
+├── next.config.mjs                
+├── tailwind.config.ts              
+├── tsconfig.json                   
+├── postcss.config.mjs              
+├── package.json                   
+├── pnpm-lock.yaml                 
+└── README.md                       
 ```
 
 ## 📱 Comportamento Responsivo
@@ -181,10 +181,8 @@ Sistema completo desenvolvido para cliente real com rastreamento via Google Maps
 ---
 
 **🔗 Links**
-- [LinkedIn](https://www.linkedin.com/in/bernardo-resende)
+- [LinkedIn](https://www.linkedin.com/in/bernardo-resende1167071b9/)
 - [GitHub](https://github.com/bernardordm)
-- [Email](mailto:bernardordm@example.com)
+- [Email](mailto:bresende66@gmail.com)
 
----
 
-**⭐ Se este projeto te ajudou, considere dar uma estrela!**
