@@ -10,6 +10,7 @@ import { ExperiencesSection } from "@/components/sections/experiences";
 import { ProjectsSection } from "@/components/sections/projects";
 import { InterestsSection } from "@/components/sections/interests";
 import { AcademicSection } from "@/components/sections/academic";
+import { ContactSection } from "@/components/sections/contact";
 
 export default function PortfolioPage() {
   const [currentSection, setCurrentSection] = useState("hero");
@@ -32,22 +33,27 @@ export default function PortfolioPage() {
     threshold: 0.5,
   });
 
+  const { ref: contactRef, inView: contactInView } = useInView({
+    threshold: 0.5,
+  });
   useEffect(() => {
     if (heroInView) setCurrentSection("hero");
     else if (aboutInView) setCurrentSection("about");
     else if (skillsInView) setCurrentSection("skills");
     else if (experienceInView) setCurrentSection("experience");
-    else if (projectsInView) setCurrentSection("projects");
     else if (academicInView) setCurrentSection("academic");
+    else if (projectsInView) setCurrentSection("projects");
     else if (interestsInView) setCurrentSection("interests");
+    else if (contactInView) setCurrentSection("contact");
   }, [
     heroInView,
     aboutInView,
     skillsInView,
     experienceInView,
+    academicInView,
     projectsInView,
     interestsInView,
-    academicInView,
+    contactInView,
   ]);
 
   return (
@@ -103,6 +109,13 @@ export default function PortfolioPage() {
           className="min-h-screen flex items-center justify-center"
         >
           <InterestsSection inView={interestsInView} />
+        </section>
+        <section
+          id="contact"
+          ref={contactRef}
+          className="min-h-screen flex items-center justify-center"
+        >
+          <ContactSection inView={contactInView} />
         </section>
       </main>
 

@@ -1,20 +1,21 @@
 import { cn } from "@/lib/utils"
-import { CodeIcon, UserIcon, LightbulbIcon, BriefcaseIcon, FolderGit2Icon, SparklesIcon, GraduationCapIcon } from "lucide-react"
+import { CodeIcon, UserIcon, LightbulbIcon, BriefcaseIcon, FolderGit2Icon, SparklesIcon, MailIcon, GraduationCapIcon } from "lucide-react"
 
 interface HeaderProps {
   currentSection: string
 }
 
 export function Header({ currentSection }: HeaderProps) {
-  const sections = [
-    { id: "home", name: "Home", icon: CodeIcon },
-    { id: "about", name: "Sobre", icon: UserIcon },
-    { id: "skills", name: "Habilidades", icon: LightbulbIcon },
-    { id: "experience", name: "Experiência", icon: BriefcaseIcon },
-    { id: "projects", name: "Projetos", icon: FolderGit2Icon },
-    { id: "academic", name: "Acadêmico", icon: GraduationCapIcon },
-    { id: "interests", name: "Interesses", icon: SparklesIcon },
-  ]
+const sections = [
+  { id: "home", name: "Home", icon: CodeIcon },
+  { id: "about", name: "Sobre", icon: UserIcon },
+  { id: "skills", name: "Habilidades", icon: LightbulbIcon },
+  { id: "experience", name: "Experiência", icon: BriefcaseIcon },
+  { id: "projects", name: "Projetos", icon: FolderGit2Icon },
+  { id: "academic", name: "Acadêmico", icon: GraduationCapIcon },
+  { id: "interests", name: "Interesses", icon: SparklesIcon },
+  { id: "contact", name: "Contato", icon: MailIcon },
+]
 
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-primary/20 p-4 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">

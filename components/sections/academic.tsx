@@ -9,24 +9,6 @@ interface AcademicSectionProps {
 }
 
 export function AcademicSection({ inView }: AcademicSectionProps) {
-  const education = [
-    {
-      degree: "Bacharelado em Sistemas de Informação",
-      institution: "Centro Universitário Una",
-      duration: "2024 - 2027",
-      status: "Em andamento",
-      description: "Formação focada em desenvolvimento de software, análise de sistemas, banco de dados, engenharia de software e gestão de projetos de TI.",
-      highlights: ["Programação Orientada a Objetos", "Banco de Dados", "Engenharia de Software", "Arquitetura de Sistemas"]
-    },
-    {
-      degree: "Técnico em Automação Industrial",
-      institution: "SENAI - Pedro Leopoldo",
-      duration: "2021 - 2023",
-      status: "Concluído",
-      description: "Formação técnica completa em automação de processos industriais, programação de PLCs, sistemas SCADA e controle de equipamentos.",
-      highlights: ["Programação de PLCs", "Sistemas SCADA", "Pneumática e Hidráulica", "Controle de Processos"]
-    }
-  ]
 
   const publications = [
     {
@@ -126,7 +108,7 @@ export function AcademicSection({ inView }: AcademicSectionProps) {
               inView ? "animate-fade-in-up" : "opacity-0",
             )}
           >
-            FORMAÇÃO ACADÊMICA
+            ACADÊMICO
           </h2>
           <p
             className={cn(
@@ -148,7 +130,7 @@ export function AcademicSection({ inView }: AcademicSectionProps) {
               variant="outline"
               size="lg"
               className="border-[#0077B5] text-[#0077B5] hover:bg-[#0077B5]/10 bg-transparent"
-              onClick={() => window.open("https://linkedin.com/in/seu-perfil", "_blank")}
+              onClick={() => window.open("https://www.linkedin.com/in/bernardo-resende1167071b9/", "_blank")}
             >
               <LinkedinIcon className="w-5 h-5 mr-2" />
               Conecte-se no LinkedIn
@@ -157,68 +139,6 @@ export function AcademicSection({ inView }: AcademicSectionProps) {
         </div>
 
         <div className="grid gap-8 py-8">
-          {/* Formação Acadêmica */}
-          <div className="space-y-6">
-            <h3
-              className={cn(
-                "text-2xl md:text-3xl font-bold text-foreground flex items-center justify-center gap-3",
-                inView ? "animate-fade-in-up delay-400" : "opacity-0",
-              )}
-            >
-              <GraduationCapIcon className="w-8 h-8 text-primary" />
-              Educação
-            </h3>
-            <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
-              {education.map((edu, index) => (
-                <Card
-                  key={index}
-                  className={cn(
-                    "flex flex-col h-full border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 bg-card",
-                    inView ? "animate-fade-in-up" : "opacity-0",
-                  )}
-                  style={{ animationDelay: `${500 + index * 200}ms` }}
-                >
-                  <CardHeader className="pb-4">
-                    <div className="flex items-start justify-between">
-                      <div className="space-y-2">
-                        <CardTitle className="text-xl font-bold text-foreground text-left">{edu.degree}</CardTitle>
-                        <p className="text-primary font-semibold text-left">{edu.institution}</p>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span>{edu.duration}</span>
-                          <Badge 
-                            variant={edu.status === "Concluído" ? "default" : "secondary"}
-                            className={edu.status === "Concluído" ? "bg-green-500/20 text-green-400 border-green-500" : ""}
-                          >
-                            {edu.status}
-                          </Badge>
-                        </div>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex flex-col justify-between flex-grow">
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-4 text-left">
-                      {edu.description}
-                    </p>
-                    <div className="space-y-2">
-                      <p className="text-sm font-semibold text-foreground text-left">Principais áreas:</p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {edu.highlights.map((highlight, highlightIndex) => (
-                          <Badge
-                            key={highlightIndex}
-                            variant="outline"
-                            className="text-xs px-2 py-0.5 border-primary/50 text-primary"
-                          >
-                            {highlight}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
           {/* Publicações e Pesquisas */}
           <div className="space-y-6">
             <h3
@@ -292,59 +212,6 @@ export function AcademicSection({ inView }: AcademicSectionProps) {
                         </ul>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Certificações */}
-          <div className="space-y-6">
-            <h3
-              className={cn(
-                "text-2xl md:text-3xl font-bold text-foreground flex items-center justify-center gap-3",
-                inView ? "animate-fade-in-up delay-800" : "opacity-0",
-              )}
-            >
-              <AwardIcon className="w-8 h-8 text-primary" />
-              Certificações
-            </h3>
-            <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {certifications.map((cert, index) => (
-                <Card
-                  key={index}
-                  className={cn(
-                    "border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 bg-card",
-                    inView ? "animate-fade-in-up" : "opacity-0",
-                  )}
-                  style={{ animationDelay: `${900 + index * 100}ms` }}
-                >
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-base font-bold text-foreground text-left leading-tight">{cert.name}</CardTitle>
-                    <p className="text-primary font-semibold text-sm text-left">{cert.issuer}</p>
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <Badge 
-                        variant="outline" 
-                        className={cn(
-                          "text-xs px-2 py-0.5",
-                          cert.type === "Inteligência Artificial" ? "border-purple-500 text-purple-400 bg-purple-500/10" :
-                          cert.type === "Desenvolvimento Web" ? "border-blue-500 text-blue-400 bg-blue-500/10" :
-                          cert.type === "Frontend" ? "border-green-500 text-green-400 bg-green-500/10" :
-                          cert.type === "Backend" ? "border-orange-500 text-orange-400 bg-orange-500/10" :
-                          "border-primary/50 text-primary"
-                        )}
-                      >
-                        {cert.type}
-                      </Badge>
-                      <span className="text-xs text-muted-foreground">{cert.year}</span>
-                    </div>
-                    {cert.credentialId && (
-                      <div className="text-xs text-muted-foreground text-left">
-                        <span className="font-medium">ID:</span> {cert.credentialId}
-                      </div>
-                    )}
                   </CardContent>
                 </Card>
               ))}
