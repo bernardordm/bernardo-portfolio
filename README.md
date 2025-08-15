@@ -2,6 +2,20 @@
 
 Este projeto é um portfolio pessoal moderno e interativo que demonstra as habilidades, experiências e projetos de Bernardo de Resende, desenvolvedor fullstack e estudante de Engenharia de Software. O website apresenta uma interface futurística com animações suaves e design responsivo, proporcionando uma experiência envolvente para mostrar competências técnicas e trajetória profissional.
 
+## 🎨 Design e Prototipação
+
+### Wireframe
+O wireframe foi desenvolvido no Figma com foco em média fidelidade, apresentando a estrutura visual e organizacional do portfolio:
+
+![Wireframe do Portfolio](docs/wireframe.png)
+
+**🔗 [Visualizar Wireframe no Figma](https://www.figma.com/design/GtvbLxqT0sGX1DkHYYAfrm/Portf%C3%B3lio-Bernardo-de-Resende?node-id=0-1&t=LpKho8qNMrtreq6j-1)**
+
+### Protótipo Funcional
+O protótipo implementado demonstra a versão funcional do design:
+
+![Protótipo do Portfolio](docs/prototype.png)
+
 ## 🚀 Funcionalidades
 
 - **Interface Futurística**: Design moderno com tema escuro e elementos neon inspirados em interfaces sci-fi
@@ -15,7 +29,7 @@ Este projeto é um portfolio pessoal moderno e interativo que demonstra as habil
 
 ## 🎯 Seções do Portfolio
 
-1. **Resume**: Apresentação principal com call-to-actions
+1. **Hero/Resume**: Apresentação principal com call-to-actions
 2. **Sobre Mim**: História pessoal e trajetória acadêmica/profissional
 3. **Skills e Tecnologias**: Habilidades técnicas organizadas por categorias
 4. **Experiências**: Histórico profissional e acadêmico
@@ -43,56 +57,56 @@ Este projeto é um portfolio pessoal moderno e interativo que demonstra as habil
 ```
 bernardo-portfolio/
 │
-├── 📁 app/                          
-│   ├── globals.css                  
-│   ├── layout.tsx                   
-│   └── page.tsx                     
+├── 📁 app/                          # Diretório principal do Next.js App Router
+│   ├── globals.css                  # Estilos globais e variáveis CSS
+│   ├── layout.tsx                   # Layout principal da aplicação
+│   └── page.tsx                     # Página principal com todas as seções
 │
-├── 📁 components/                   
-│   ├── header.tsx                   
-│   ├── theme-provider.tsx          
+├── 📁 components/                   # Componentes React reutilizáveis
+│   ├── header.tsx                   # Header fixo com navegação
+│   ├── theme-provider.tsx          # Provider para gerenciamento de temas
 │   │
-│   ├── 📁 sections/                
-│   │   ├── resume.tsx              
-│   │   ├── about-me.tsx            
-│   │   ├── skills.tsx              
-│   │   ├── experiences.tsx         
-│   │   ├── projects.tsx            
-│   │   ├── academic.tsx            
-│   │   ├── interests.tsx           
-│   │   └── contact.tsx             
+│   ├── 📁 sections/                # Seções específicas do portfolio
+│   │   ├── resume.tsx              # Seção hero/apresentação
+│   │   ├── about-me.tsx            # Seção sobre mim
+│   │   ├── skills.tsx              # Seção de habilidades técnicas
+│   │   ├── experiences.tsx         # Seção de experiências profissionais
+│   │   ├── projects.tsx            # Seção de projetos desenvolvidos
+│   │   ├── academic.tsx            # Seção acadêmica e pesquisas
+│   │   ├── interests.tsx           # Seção de interesses pessoais
+│   │   └── contact.tsx             # Seção de contato
 │   │
-│   └── 📁 ui/                      
-│       ├── button.tsx             
-│       ├── card.tsx                
-│       ├── badge.tsx              
-│       └── sidebar.tsx             
+│   └── 📁 ui/                      # Componentes UI base (shadcn/ui)
+│       ├── button.tsx              # Componente de botão
+│       ├── card.tsx                # Componente de card
+│       ├── badge.tsx               # Componente de badge
+│       └── sidebar.tsx             # Componente de sidebar
 │
-├── 📁 hooks/                      
-│   ├── use-mobile.tsx              
-│   └── use-toast.ts                
+├── 📁 hooks/                       # Hooks React personalizados
+│   ├── use-mobile.tsx              # Hook para detecção de dispositivos móveis
+│   └── use-toast.ts                # Hook para sistema de notificações
 │
-├── 📁 lib/                         
-│   └── utils.ts                    
+├── 📁 lib/                         # Utilitários e funções auxiliares
+│   └── utils.ts                    # Funções utilitárias (cn, clsx, etc.)
 │
-├── 📁 public/                     
-│   ├── abstract-grid.png           
-│   ├── futuristic-circuit.png      
-│   ├── futuristic-grid.png         
-│   └── placeholder-logo.png        
+├── 📁 public/                      # Arquivos estáticos
+│   ├── abstract-grid.png           # Imagem de fundo em grid
+│   ├── futuristic-circuit.png      # Textura de circuito futurístico
+│   ├── futuristic-grid.png         # Grid futurístico animado
+│   └── placeholder-logo.png        # Logo placeholder
 │
-├── 📁 styles/                     
+├── 📁 styles/                      # Estilos adicionais
 │
-├── 📁 .next/                       
+├── 📁 .next/                       # Build files do Next.js (auto-gerado)
 │
-├── components.json                 
-├── next.config.mjs                
-├── tailwind.config.ts              
-├── tsconfig.json                   
-├── postcss.config.mjs              
-├── package.json                   
-├── pnpm-lock.yaml                 
-└── README.md                       
+├── components.json                 # Configuração do shadcn/ui
+├── next.config.mjs                 # Configuração do Next.js
+├── tailwind.config.ts              # Configuração do Tailwind CSS
+├── tsconfig.json                   # Configuração do TypeScript
+├── postcss.config.mjs              # Configuração do PostCSS
+├── package.json                    # Dependências e scripts
+├── pnpm-lock.yaml                  # Lock file do pnpm
+└── README.md                       # Documentação do projeto
 ```
 
 ## 📱 Comportamento Responsivo
@@ -181,8 +195,10 @@ Sistema completo desenvolvido para cliente real com rastreamento via Google Maps
 ---
 
 **🔗 Links**
-- [LinkedIn](https://www.linkedin.com/in/bernardo-resende1167071b9/)
+- [LinkedIn](https://www.linkedin.com/in/bernardo-resende)
 - [GitHub](https://github.com/bernardordm)
-- [Email](mailto:bresende66@gmail.com)
+- [Email](mailto:bernardordm@example.com)
 
+---
 
+**⭐ Se este projeto te ajudou, considere dar uma estrela!**
