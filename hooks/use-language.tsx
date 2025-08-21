@@ -15,6 +15,8 @@ const translations = {
     'nav.projects': 'Projetos',
     'nav.experiences': 'Experiências',
     'nav.contact': 'Contato',
+    'nav.academic': 'Acadêmico',
+    'nav.interests': 'Interesses',
     
     // Resume
     'resume.title': 'BERNARDO DE RESENDE',
@@ -38,7 +40,9 @@ const translations = {
     'nav.projects': 'Projects',
     'nav.experiences': 'Experiences',
     'nav.contact': 'Contact',
-    
+    'nav.academic': 'Academic',
+    'nav.interests': 'Interests',
+
     // Resume
     'resume.title': 'BERNARDO DE RESENDE',
     'resume.subtitle': 'Software Engineer | Fullstack Developer',

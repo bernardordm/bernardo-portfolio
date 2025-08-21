@@ -15,8 +15,8 @@ export function Header({ activeSection }: HeaderProps) {
     { id: "skills", label: "Skills" },
     { id: "experiences", label: t('nav.experiences') },
     { id: "projects", label: t('nav.projects') },
-    { id: "academic", label: "Acadêmico" },
-    { id: "interests", label: "Interesses" },
+    { id: "academic", label: t('nav.academic') },
+    { id: "interests", label: t('nav.interests') },
     { id: "contact", label: t('nav.contact') },
   ]
 
