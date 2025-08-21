@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { GithubIcon, ExternalLinkIcon, RocketIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 interface ProjectsSectionProps {
   inView: boolean
@@ -17,7 +18,8 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
       technologies: ["Java", "Spring Boot", "JavaFX", "MVC", "POO", "DTOs"],
       githubLink: "https://github.com/bernardordm/Java-Parking",
       liveLink: "#",
-      featured: true
+      featured: true,
+      image: "/JavaParking.jpeg"
     },
     {
       title: "Gnosi - Plataforma de Cursos",
@@ -26,7 +28,8 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
       technologies: ["Java", "Spring Boot", "React.js", "PostgreSQL", "MVC", "POO"],
       githubLink: "#",
       liveLink: "#",
-      featured: true
+      featured: true,
+      image: "/Gnosi.jpeg"
     },
     {
       title: "Fabiana Móveis - Sistema de Gestão",
@@ -35,7 +38,8 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
       technologies: ["Node.js", "NestJS", "Next.js", "Google Maps API", "PostgreSQL", "TypeScript"],
       githubLink: "#",
       liveLink: "#",
-      featured: true
+      featured: true,
+      image: "/FabianaMoveis.jpeg"
     },
   ]
 
@@ -76,10 +80,23 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
               style={{ animationDelay: `${400 + index * 200}ms` }}
             >
               {project.featured && (
-                <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-bl-md font-semibold">
+                <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-bl-md font-semibold z-10">
                   DESTAQUE
                 </div>
               )}
+              
+              {/* Imagem do Projeto */}
+              <div className="relative w-full h-48 overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={`Screenshot do projeto ${project.title}`}
+                  fill
+                  className="object-cover transition-transform duration-300 hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
+              </div>
+
               <CardHeader className="pb-4">
                 <div className="flex items-center space-x-2">
                   <RocketIcon className="w-6 h-6 text-primary" />
