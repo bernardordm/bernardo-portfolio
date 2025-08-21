@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import { LanguageProvider } from "@/hooks/use-language";
 import { Header } from "@/components/header";
 import { ResumeSection } from "@/components/sections/resume";
 import { AboutMeSection } from "@/components/sections/about-me";
@@ -13,117 +14,82 @@ import { AcademicSection } from "@/components/sections/academic";
 import { ContactSection } from "@/components/sections/contact";
 
 export default function PortfolioPage() {
-  const [currentSection, setCurrentSection] = useState("hero");
+  const [activeSection, setActiveSection] = useState("resume");
 
-  const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.5 });
-  const { ref: aboutRef, inView: aboutInView } = useInView({ threshold: 0.5 });
-  const { ref: skillsRef, inView: skillsInView } = useInView({
-    threshold: 0.5,
+  const { ref: resumeRef, inView: resumeInView } = useInView({
+    threshold: 0.3,
   });
-  const { ref: experienceRef, inView: experienceInView } = useInView({
-    threshold: 0.5,
+  const { ref: aboutRef, inView: aboutInView } = useInView({ threshold: 0.3 });
+  const { ref: skillsRef, inView: skillsInView } = useInView({
+    threshold: 0.3,
+  });
+  const { ref: experiencesRef, inView: experiencesInView } = useInView({
+    threshold: 0.3,
   });
   const { ref: projectsRef, inView: projectsInView } = useInView({
-    threshold: 0.5,
-  });
-  const { ref: interestsRef, inView: interestsInView } = useInView({
-    threshold: 0.5,
+    threshold: 0.3,
   });
   const { ref: academicRef, inView: academicInView } = useInView({
-    threshold: 0.5,
+    threshold: 0.3,
+  });
+  const { ref: interestsRef, inView: interestsInView } = useInView({
+    threshold: 0.3,
+  });
+  const { ref: contactRef, inView: contactInView } = useInView({
+    threshold: 0.3,
   });
 
-  const { ref: contactRef, inView: contactInView } = useInView({
-    threshold: 0.5,
-  });
   useEffect(() => {
-    if (heroInView) setCurrentSection("hero");
-    else if (aboutInView) setCurrentSection("about");
-    else if (skillsInView) setCurrentSection("skills");
-    else if (experienceInView) setCurrentSection("experience");
-    else if (academicInView) setCurrentSection("academic");
-    else if (projectsInView) setCurrentSection("projects");
-    else if (interestsInView) setCurrentSection("interests");
-    else if (contactInView) setCurrentSection("contact");
+    if (resumeInView) setActiveSection("resume");
+    else if (aboutInView) setActiveSection("about");
+    else if (skillsInView) setActiveSection("skills");
+    else if (experiencesInView) setActiveSection("experiences");
+    else if (projectsInView) setActiveSection("projects");
+    else if (academicInView) setActiveSection("academic");
+    else if (interestsInView) setActiveSection("interests");
+    else if (contactInView) setActiveSection("contact");
   }, [
-    heroInView,
+    resumeInView,
     aboutInView,
     skillsInView,
-    experienceInView,
-    academicInView,
+    experiencesInView,
     projectsInView,
+    academicInView,
     interestsInView,
     contactInView,
   ]);
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
-      <Header currentSection={currentSection} />
-
-      <main className="relative z-10">
-        <section
-          id="home"
-          ref={heroRef}
-          className="min-h-screen flex items-center justify-center"
-        >
-          <ResumeSection inView={heroInView} />
-        </section>
-        <section
-          id="about"
-          ref={aboutRef}
-          className="min-h-screen flex items-center justify-center"
-        >
-          <AboutMeSection inView={aboutInView} />
-        </section>
-        <section
-          id="skills"
-          ref={skillsRef}
-          className="min-h-screen flex items-center justify-center"
-        >
-          <SkillsSection inView={skillsInView} />
-        </section>
-        <section
-          id="experience"
-          ref={experienceRef}
-          className="min-h-screen flex items-center justify-center"
-        >
-          <ExperiencesSection inView={experienceInView} />
-        </section>
-        <section
-          id="projects"
-          ref={projectsRef}
-          className="min-h-screen flex items-center justify-center"
-        >
-          <ProjectsSection inView={projectsInView} />
-        </section>
-        <section
-          id="academic"
-          ref={academicRef}
-          className="min-h-screen flex items-center justify-center"
-        >
-          <AcademicSection inView={academicInView} />
-        </section>
-        <section
-          id="interests"
-          ref={interestsRef}
-          className="min-h-screen flex items-center justify-center"
-        >
-          <InterestsSection inView={interestsInView} />
-        </section>
-        <section
-          id="contact"
-          ref={contactRef}
-          className="min-h-screen flex items-center justify-center"
-        >
-          <ContactSection inView={contactInView} />
-        </section>
-      </main>
-
-      <footer className="bg-card p-6 text-center border-t border-primary/30">
-        <p className="text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Bernardo de Resende Marcelino.
-        </p>
-      </footer>
-    </div>
+    <LanguageProvider>
+      <div className="relative">
+        <Header activeSection={activeSection} />
+        <main>
+          <section id="resume" ref={resumeRef}>
+            <ResumeSection inView={resumeInView} />
+          </section>
+          <section id="about" ref={aboutRef}>
+            <AboutMeSection inView={aboutInView} />
+          </section>
+          <section id="skills" ref={skillsRef}>
+            <SkillsSection inView={skillsInView} />
+          </section>
+          <section id="experiences" ref={experiencesRef}>
+            <ExperiencesSection inView={experiencesInView} />
+          </section>
+          <section id="projects" ref={projectsRef}>
+            <ProjectsSection inView={projectsInView} />
+          </section>
+          <section id="academic" ref={academicRef}>
+            <AcademicSection inView={academicInView} />
+          </section>
+          <section id="interests" ref={interestsRef}>
+            <InterestsSection inView={interestsInView} />
+          </section>
+          <section id="contact" ref={contactRef}>
+            <ContactSection inView={contactInView} />
+          </section>
+        </main>
+      </div>
+    </LanguageProvider>
   );
 }

@@ -1,41 +1,46 @@
+import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
-import { 
-  MailIcon, 
-  PhoneIcon, 
-  MapPinIcon, 
-  LinkedinIcon, 
-  GithubIcon, 
-  InstagramIcon,
-  SendIcon,
-  MessageCircleIcon,
-  ClockIcon,
-  UserIcon
-} from "lucide-react"
+import { MailIcon, PhoneIcon, LinkedinIcon, GithubIcon, InstagramIcon, SendIcon, UserIcon, ClockIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { useState } from "react"
 
 interface ContactSectionProps {
   inView: boolean
 }
 
+interface FormData {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
+
+interface FormErrors {
+  name?: string
+  email?: string
+  subject?: string
+  message?: string
+}
+
 export function ContactSection({ inView }: ContactSectionProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     subject: "",
     message: ""
   })
 
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const contactInfo = [
     {
       icon: <MailIcon className="w-6 h-6" />,
       label: "E-mail",
-      value: "bresende66@gmail.com",
-      href: "mailto:bernardordm@gmail.com",
+      value: "bernardordm@outlook.com",
+      href: "mailto:bernardordm@outlook.com",
       description: "Resposta em até 24h"
     },
     {
@@ -71,20 +76,89 @@ export function ContactSection({ inView }: ContactSectionProps) {
     }
   ]
 
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {}
+
+    // Validar nome
+    if (!formData.name.trim()) {
+      newErrors.name = "Nome é obrigatório"
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Nome deve ter pelo menos 2 caracteres"
+    }
+
+    // Validar email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!formData.email.trim()) {
+      newErrors.email = "E-mail é obrigatório"
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = "E-mail deve ter um formato válido"
+    }
+
+    // Validar assunto
+    if (!formData.subject.trim()) {
+      newErrors.subject = "Assunto é obrigatório"
+    } else if (formData.subject.trim().length < 5) {
+      newErrors.subject = "Assunto deve ter pelo menos 5 caracteres"
+    }
+
+    // Validar mensagem
+    if (!formData.message.trim()) {
+      newErrors.message = "Mensagem é obrigatória"
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Mensagem deve ter pelo menos 10 caracteres"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
       [name]: value
     }))
+
+    // Limpar erro do campo quando o usuário começar a digitar
+    if (errors[name as keyof FormErrors]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: undefined
+      }))
+    }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const mailtoLink = `mailto:bernardordm@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-      `Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`
-    )}`
-    window.location.href = mailtoLink
+    
+    if (!validateForm()) {
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      // Simular delay de envio
+      await new Promise(resolve => setTimeout(resolve, 1000))
+
+      const mailtoLink = `mailto:bernardordm@outlook.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+        `Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`
+      )}`
+      
+      window.location.href = mailtoLink
+
+      // Limpar formulário após sucesso
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      })
+    } catch (error) {
+      console.error('Erro ao enviar:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -95,7 +169,6 @@ export function ContactSection({ inView }: ContactSectionProps) {
           style={{ backgroundSize: "cover" }}
         ></div>
       </div>
-      
       <div className="relative z-10 space-y-8 max-w-7xl w-full">
         {/* Header */}
         <div className="text-center space-y-4">
@@ -119,83 +192,69 @@ export function ContactSection({ inView }: ContactSectionProps) {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
+          {/* Informações de Contato */}
           <div className="space-y-6">
-            <div className="space-y-4">
-              {contactInfo.map((contact, index) => (
-                <Card
-                  key={index}
-                  className={cn(
-                    "border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 bg-card/80 backdrop-blur-sm",
-                    inView ? "animate-slide-in-left" : "opacity-0",
-                  )}
-                  style={{ animationDelay: `${400 + index * 200}ms` }}
-                >
-                  <CardContent className="p-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                        {contact.icon}
-                      </div>
-                      <div className="flex-1 text-left">
-                        <h3 className="font-semibold text-foreground">{contact.label}</h3>
-                        <p className="text-muted-foreground text-sm">{contact.description}</p>
-                        {contact.href !== "#" ? (
-                          <a 
-                            href={contact.href}
-                            className="text-primary hover:underline font-medium"
-                          >
-                            {contact.value}
-                          </a>
-                        ) : (
-                          <p className="text-primary font-medium">{contact.value}</p>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            {/* Cards de Contato */}
+            {contactInfo.map((contact, index) => (
+              <Card
+                key={index}
+                className={cn(
+                  "border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 cursor-pointer",
+                  inView ? "animate-slide-in-left" : "opacity-0",
+                )}
+                style={{ animationDelay: `${400 + index * 200}ms` }}
+                onClick={() => window.open(contact.href, "_blank")}
+              >
+                <CardContent className="flex items-center gap-4 p-6">
+                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary">
+                    {contact.icon}
+                  </div>
+                  <div className="text-left flex-1">
+                    <h3 className="font-semibold text-foreground">{contact.label}</h3>
+                    <p className="text-primary font-mono">{contact.value}</p>
+                    <p className="text-sm text-muted-foreground">{contact.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
 
+            {/* Redes Sociais */}
             <Card
               className={cn(
-                "border border-primary/30 shadow-lg bg-card/80 backdrop-blur-sm",
-                inView ? "animate-slide-in-left delay-1000" : "opacity-0",
+                "border border-primary/30 shadow-lg",
+                inView ? "animate-slide-in-left delay-800" : "opacity-0",
               )}
             >
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-foreground">
-                  <MessageCircleIcon className="w-5 h-5 text-primary" />
-                  Redes Sociais
-                </CardTitle>
+                <CardTitle className="text-foreground">Redes Sociais</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent className="flex flex-wrap gap-3">
                 {socialLinks.map((social, index) => (
                   <Button
                     key={index}
                     variant="outline"
-                    size="lg"
-                    className={cn("w-full justify-start gap-3", social.color)}
+                    size="sm"
+                    className={cn("flex-1 min-w-32", social.color)}
                     onClick={() => window.open(social.href, "_blank")}
                   >
                     {social.icon}
-                    <div className="text-left flex-1">
-                      <div className="font-medium">{social.name}</div>
-                      <div className="text-xs opacity-70">{social.description}</div>
-                    </div>
+                    <span className="ml-2">{social.name}</span>
                   </Button>
                 ))}
               </CardContent>
             </Card>
 
+            {/* Status Disponibilidade */}
             <Card
               className={cn(
-                "border border-green-500/30 shadow-lg bg-gradient-to-br from-card to-green-500/5",
-                inView ? "animate-slide-in-left delay-1200" : "opacity-0",
+                "border border-green-500/30 bg-green-500/5",
+                inView ? "animate-slide-in-left delay-1000" : "opacity-0",
               )}
             >
-              <CardContent className="p-4">
-                <div className="flex items-center space-x-3">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     <div className="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping opacity-20"></div>
                   </div>
                   <div className="text-left">
@@ -210,6 +269,7 @@ export function ContactSection({ inView }: ContactSectionProps) {
             </Card>
           </div>
 
+          {/* Formulário de Contato */}
           <Card
             className={cn(
               "border border-primary/30 shadow-xl bg-card/80 backdrop-blur-sm",
@@ -219,7 +279,7 @@ export function ContactSection({ inView }: ContactSectionProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-foreground">
                 <SendIcon className="w-5 h-5 text-primary" />
-                Envie um E-mail !
+                Envie um E-mail!
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -235,9 +295,14 @@ export function ContactSection({ inView }: ContactSectionProps) {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Seu nome completo"
-                      required
-                      className="border-primary/30 focus:border-primary"
+                      className={cn(
+                        "border-primary/30 focus:border-primary",
+                        errors.name && "border-red-500 focus:border-red-500"
+                      )}
                     />
+                    {errors.name && (
+                      <p className="text-red-500 text-xs">{errors.name}</p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground flex items-center gap-1">
@@ -250,9 +315,14 @@ export function ContactSection({ inView }: ContactSectionProps) {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="seu@email.com"
-                      required
-                      className="border-primary/30 focus:border-primary"
+                      className={cn(
+                        "border-primary/30 focus:border-primary",
+                        errors.email && "border-red-500 focus:border-red-500"
+                      )}
                     />
+                    {errors.email && (
+                      <p className="text-red-500 text-xs">{errors.email}</p>
+                    )}
                   </div>
                 </div>
                 
@@ -265,9 +335,14 @@ export function ContactSection({ inView }: ContactSectionProps) {
                     value={formData.subject}
                     onChange={handleInputChange}
                     placeholder="Sobre o que você gostaria de conversar?"
-                    required
-                    className="border-primary/30 focus:border-primary"
+                    className={cn(
+                      "border-primary/30 focus:border-primary",
+                      errors.subject && "border-red-500 focus:border-red-500"
+                    )}
                   />
+                  {errors.subject && (
+                    <p className="text-red-500 text-xs">{errors.subject}</p>
+                  )}
                 </div>
                 
                 <div className="space-y-2">
@@ -280,18 +355,33 @@ export function ContactSection({ inView }: ContactSectionProps) {
                     onChange={handleInputChange}
                     placeholder="Descreva seu projeto, ideia ou como posso ajudar..."
                     rows={5}
-                    required
-                    className="border-primary/30 focus:border-primary resize-none"
+                    className={cn(
+                      "border-primary/30 focus:border-primary resize-none",
+                      errors.message && "border-red-500 focus:border-red-500"
+                    )}
                   />
+                  {errors.message && (
+                    <p className="text-red-500 text-xs">{errors.message}</p>
+                  )}
                 </div>
                 
                 <Button 
                   type="submit" 
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                   size="lg"
+                  disabled={isSubmitting}
                 >
-                  <SendIcon className="w-4 h-4 mr-2" />
-                  Enviar E-mail
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2"></div>
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      <SendIcon className="w-4 h-4 mr-2" />
+                      Enviar E-mail
+                    </>
+                  )}
                 </Button>
                 
                 <p className="text-xs text-muted-foreground text-center">
