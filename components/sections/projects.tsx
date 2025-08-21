@@ -152,8 +152,8 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
                       <ExternalLinkIcon className="w-4 h-4 mr-1" /> Live
                     </Button>
                   ) : (
-                    <Button 
-                      size="sm" 
+                    <Button
+                      size="sm"
                       className="bg-gray-500 text-gray-100 cursor-not-allowed flex-1"
                       disabled
                     >
