@@ -2,12 +2,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { CodeIcon, DatabaseIcon, CloudIcon, SettingsIcon, PaletteIcon, GitBranchIcon, GlobeIcon, LoaderIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/hooks/use-language"
 
 interface SkillsSectionProps {
   inView: boolean
 }
 
 export function SkillsSection({ inView }: SkillsSectionProps) {
+  const { t } = useLanguage()
+
   return (
     <div className="relative w-full h-full min-h-screen flex flex-col items-center justify-center text-center p-4 md:p-8 bg-background overflow-hidden border-b border-primary/20">
       <div className="absolute inset-0 z-0 opacity-10">
@@ -23,7 +26,7 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
             inView ? "animate-fade-in-up" : "opacity-0",
           )}
         >
-          Skills e Tecnologias
+          {t('skills.title')}
         </h2>
         <p
           className={cn(
@@ -31,12 +34,10 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
             inView ? "animate-fade-in-up delay-200" : "opacity-0",
           )}
         >
-          Minhas principais habilidades técnicas e as tecnologias que domino.
+          {t('skills.subtitle')}
         </p>
         
         <div className="grid gap-6 py-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-          {/* ...existing code... */}
-          {/* Linguagens de Programação */}
           <Card
             className={cn(
               "bg-card border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 h-fit",
@@ -45,7 +46,7 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
           >
             <CardHeader className="flex flex-row items-center space-x-4 pb-4">
               <CodeIcon className="w-8 h-8 text-primary" />
-              <CardTitle className="text-xl font-bold text-foreground">Linguagens</CardTitle>
+              <CardTitle className="text-xl font-bold text-foreground">{t('skills.languages')}</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               <Badge className="bg-primary/20 text-primary hover:bg-primary/30 text-sm px-3 py-1 border border-primary">
@@ -63,7 +64,6 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
             </CardContent>
           </Card>
 
-          {/* Frontend */}
           <Card
             className={cn(
               "bg-card border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 h-fit",
@@ -72,7 +72,7 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
           >
             <CardHeader className="flex flex-row items-center space-x-4 pb-4">
               <PaletteIcon className="w-8 h-8 text-primary" />
-              <CardTitle className="text-xl font-bold text-foreground">Frontend & UI/UX</CardTitle>
+              <CardTitle className="text-xl font-bold text-foreground">{t('skills.frontend')}</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               <Badge className="bg-primary/20 text-primary hover:bg-primary/30 text-sm px-3 py-1 border border-primary">
@@ -87,7 +87,6 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
             </CardContent>
           </Card>
 
-          {/* Backend & Frameworks */}
           <Card
             className={cn(
               "bg-card border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 h-fit",
@@ -96,7 +95,7 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
           >
             <CardHeader className="flex flex-row items-center space-x-4 pb-4">
               <SettingsIcon className="w-8 h-8 text-primary" />
-              <CardTitle className="text-xl font-bold text-foreground">Backend</CardTitle>
+              <CardTitle className="text-xl font-bold text-foreground">{t('skills.backend')}</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               <Badge className="bg-primary/20 text-primary hover:bg-primary/30 text-sm px-3 py-1 border border-primary">
@@ -114,7 +113,6 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
             </CardContent>
           </Card>
 
-          {/* Banco de Dados */}
           <Card
             className={cn(
               "bg-card border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 h-fit",
@@ -123,7 +121,7 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
           >
             <CardHeader className="flex flex-row items-center space-x-4 pb-4">
               <DatabaseIcon className="w-8 h-8 text-primary" />
-              <CardTitle className="text-xl font-bold text-foreground">Banco de Dados</CardTitle>
+              <CardTitle className="text-xl font-bold text-foreground">{t('skills.databases')}</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               <Badge className="bg-primary/20 text-primary hover:bg-primary/30 text-sm px-3 py-1 border border-primary">
@@ -138,7 +136,6 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
             </CardContent>
           </Card>
 
-          {/* Ferramentas & Versionamento */}
           <Card
             className={cn(
               "bg-card border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 h-fit",
@@ -147,7 +144,7 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
           >
             <CardHeader className="flex flex-row items-center space-x-4 pb-4">
               <GitBranchIcon className="w-8 h-8 text-primary" />
-              <CardTitle className="text-xl font-bold text-foreground">Ferramentas</CardTitle>
+              <CardTitle className="text-xl font-bold text-foreground">{t('skills.tools')}</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               <Badge className="bg-primary/20 text-primary hover:bg-primary/30 text-sm px-3 py-1 border border-primary">
@@ -162,7 +159,6 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
             </CardContent>
           </Card>
 
-          {/* Estudando */}
           <Card
             className={cn(
               "bg-card border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 h-fit",
@@ -175,7 +171,7 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
                 <LoaderIcon className="w-4 h-4 text-green-400 animate-spin absolute -top-1 -right-1" />
               </div>
               <CardTitle className="text-xl font-bold text-foreground">
-                Estudando
+                {t('skills.learning')}
               </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
@@ -195,7 +191,6 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
           </Card>
         </div>
 
-        {/* Card de Idiomas centralizado separadamente */}
         <div className="flex justify-center mt-6">
           <Card
             className={cn(
@@ -205,14 +200,14 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
           >
             <CardHeader className="flex flex-row items-center space-x-4 pb-4">
               <GlobeIcon className="w-8 h-8 text-primary" />
-              <CardTitle className="text-xl font-bold text-foreground">Idiomas</CardTitle>
+              <CardTitle className="text-xl font-bold text-foreground">{t('skills.languageSkills')}</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2 justify-center">
               <Badge className="bg-green-500/20 text-green-400 hover:bg-green-500/30 text-sm px-3 py-1 border border-green-500">
-                Português (Nativo)
+                {t('skills.portuguese')}
               </Badge>
               <Badge className="bg-green-500/20 text-green-400 hover:bg-green-500/30 text-sm px-3 py-1 border border-green-500">
-                Inglês - Avançado
+                {t('skills.english')}
               </Badge>
             </CardContent>
           </Card>

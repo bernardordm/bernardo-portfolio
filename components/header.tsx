@@ -57,7 +57,6 @@ export function Header({ activeSection }: HeaderProps) {
               </Button>
             ))}
             
-            {/* Language Toggle */}
             <Button
               variant="outline"
               size="sm"

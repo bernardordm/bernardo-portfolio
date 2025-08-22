@@ -2,12 +2,15 @@ import { Button } from "@/components/ui/button"
 import { DownloadIcon, MailIcon, LinkedinIcon, GithubIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
+import { useLanguage } from "@/hooks/use-language"
 
 interface ResumeSectionProps {
   inView: boolean
 }
 
 export function ResumeSection({ inView }: ResumeSectionProps) {
+  const { t } = useLanguage()
+
   return (
     <div className="relative w-full h-full min-h-screen flex flex-col items-center justify-center text-center p-4 md:p-8 bg-background overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-10">
@@ -17,7 +20,6 @@ export function ResumeSection({ inView }: ResumeSectionProps) {
         ></div>
       </div>
       <div className="relative z-10 space-y-8 max-w-4xl">
-        {/* Foto de Perfil */}
         <div
           className={cn(
             "flex justify-center mb-8",
@@ -35,7 +37,6 @@ export function ResumeSection({ inView }: ResumeSectionProps) {
                 priority
               />
             </div>
-            {/* Efeito de brilho */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-transparent animate-pulse"></div>
           </div>
         </div>
@@ -46,7 +47,7 @@ export function ResumeSection({ inView }: ResumeSectionProps) {
             inView ? "animate-fade-in-up delay-200" : "opacity-0",
           )}
         >
-          BERNARDO DE RESENDE
+          {t('resume.title')}
         </h1>
         <p
           className={cn(
@@ -54,9 +55,9 @@ export function ResumeSection({ inView }: ResumeSectionProps) {
             inView ? "animate-fade-in-up delay-300" : "opacity-0",
           )}
         >
-          Engenheiro de Software | Desenvolvedor Fullstack
+          {t('resume.subtitle')}
           <br />
-          Transformando ideias complexas em soluções tecnológicas escaláveis.
+          {t('resume.description')}
         </p>
         <div
           className={cn(
@@ -68,12 +69,11 @@ export function ResumeSection({ inView }: ResumeSectionProps) {
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-primary/50 transition-all duration-300"
             onClick={() => {
-              // Adicione aqui o link para download do currículo
               console.log("Download CV")
             }}
           >
             <DownloadIcon className="w-5 h-5 mr-2" />
-            Download CV
+            {t('resume.downloadCV')}
           </Button>
           <Button
             variant="outline"
@@ -85,7 +85,7 @@ export function ResumeSection({ inView }: ResumeSectionProps) {
             }}
           >
             <MailIcon className="w-5 h-5 mr-2" />
-            Entre em Contato
+            {t('resume.contact')}
           </Button>
         </div>
         <div
