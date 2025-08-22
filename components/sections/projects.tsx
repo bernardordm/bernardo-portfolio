@@ -4,17 +4,19 @@ import { Button } from "@/components/ui/button"
 import { GithubIcon, ExternalLinkIcon, RocketIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
+import { useLanguage } from "@/hooks/use-language"
 
 interface ProjectsSectionProps {
   inView: boolean
 }
 
 export function ProjectsSection({ inView }: ProjectsSectionProps) {
+  const { t } = useLanguage()
+
   const projects = [
     {
       title: "Java Parking",
-      description:
-        "Sistema de controle de estacionamento desenvolvido em Java com foco em Programação Orientada a Objetos. Implementa conceitos fundamentais como polimorfismo, encapsulamento e divisão de responsabilidades, seguindo o padrão MVC com DTOs e interface gráfica em JavaFX.",
+      description: t('projects.javaParking.description'),
       technologies: ["Java", "Spring Boot", "JavaFX", "MVC", "POO", "DTOs"],
       githubLink: "https://github.com/bernardordm/Java-Parking",
       liveLink: "#",
@@ -22,9 +24,8 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
       image: "/JavaParking.jpeg"
     },
     {
-      title: "Gnosi - Plataforma de Cursos",
-      description:
-        "Plataforma gratuita de cursos online com arquitetura fullstack robusta. Backend desenvolvido em Java Spring Boot e frontend em React.js, aplicando rigorosamente os princípios de POO, padrão MVC e boas práticas de desenvolvimento de software.",
+      title: "Gnosi - " + t('projects.gnosi.title'),
+      description: t('projects.gnosi.description'),
       technologies: ["Java", "Spring Boot", "React.js", "PostgreSQL", "MVC", "POO"],
       githubLink: "#",
       liveLink: "#",
@@ -32,9 +33,8 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
       image: "/Gnosi.jpeg"
     },
     {
-      title: "Fabiana Móveis - Sistema de Gestão",
-      description:
-        "Sistema completo de gestão desenvolvido para cliente real, incluindo rastreamento de entregas via Google Maps API, geração de relatórios, cadastro de funcionários e controle de entregas. Solução fullstack com backend em Node.js/NestJS e frontend em Next.js.",
+      title: "Fabiana Móveis - " + t('projects.fabianaMoveis.title'),
+      description: t('projects.fabianaMoveis.description'),
       technologies: ["Node.js", "NestJS", "Next.js", "Google Maps API", "PostgreSQL", "TypeScript"],
       githubLink: "#",
       liveLink: "#",
@@ -58,7 +58,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
             inView ? "animate-fade-in-up" : "opacity-0",
           )}
         >
-          PROJETOS DESENVOLVIDOS
+          {t('projects.title')}
         </h2>
         <p
           className={cn(
@@ -66,7 +66,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
             inView ? "animate-fade-in-up delay-200" : "opacity-0",
           )}
         >
-          Projetos que demonstram minha evolução técnica e aplicação prática de conceitos fundamentais da engenharia de software.
+          {t('projects.subtitle')}
         </p>
         <div className="grid gap-8 py-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
@@ -81,7 +81,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
             >
               {project.featured && (
                 <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-bl-md font-semibold z-10">
-                  DESTAQUE
+                  {t('projects.highlight')}
                 </div>
               )}
               
@@ -131,7 +131,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
                       className="border-primary text-primary hover:bg-primary/10 bg-transparent flex-1"
                       onClick={() => window.open(project.githubLink, "_blank")}
                     >
-                      <GithubIcon className="w-4 h-4 mr-1" /> GitHub
+                      <GithubIcon className="w-4 h-4 mr-1" /> {t('projects.github')}
                     </Button>
                   ) : (
                     <Button
@@ -140,7 +140,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
                       className="border-gray-500 text-gray-500 cursor-not-allowed flex-1"
                       disabled
                     >
-                      <GithubIcon className="w-4 h-4 mr-1" /> Privado
+                      <GithubIcon className="w-4 h-4 mr-1" /> {t('projects.private')}
                     </Button>
                   )}
                   {project.liveLink !== "#" ? (
@@ -149,7 +149,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
                       className="bg-primary text-primary-foreground hover:bg-primary/90 flex-1"
                       onClick={() => window.open(project.liveLink, "_blank")}
                     >
-                      <ExternalLinkIcon className="w-4 h-4 mr-1" /> Live
+                      <ExternalLinkIcon className="w-4 h-4 mr-1" /> {t('projects.live')}
                     </Button>
                   ) : (
                     <Button 
@@ -157,7 +157,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
                       className="bg-gray-500 text-gray-100 cursor-not-allowed flex-1"
                       disabled
                     >
-                      <ExternalLinkIcon className="w-4 h-4 mr-1" /> Em Breve
+                      <ExternalLinkIcon className="w-4 h-4 mr-1" /> {t('projects.comingSoon')}
                     </Button>
                   )}
                 </div>

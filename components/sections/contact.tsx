@@ -39,8 +39,8 @@ export function ContactSection({ inView }: ContactSectionProps) {
     {
       icon: <MailIcon className="w-6 h-6" />,
       label: "E-mail",
-      value: "bernardordm@outlook.com",
-      href: "mailto:bernardordm@outlook.com",
+      value: "bresende66@gmail.com",
+      href: "mailto:bresende66@gmail.com",
       description: "Resposta em até 24h"
     },
     {
@@ -141,7 +141,7 @@ export function ContactSection({ inView }: ContactSectionProps) {
       // Simular delay de envio
       await new Promise(resolve => setTimeout(resolve, 1000))
 
-      const mailtoLink = `mailto:bernardordm@outlook.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+      const mailtoLink = `mailto:bresende66@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
         `Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`
       )}`
       

@@ -56,9 +56,31 @@ const translations = {
     'projects.private': 'Privado',
     'projects.comingSoon': 'Em Breve',
 
-    // Experiences
+    // Individual Projects
+    'projects.javaParking.description': 'Sistema de controle de estacionamento desenvolvido em Java com foco em Programação Orientada a Objetos. Implementa conceitos fundamentais como polimorfismo, encapsulamento e divisão de responsabilidades, seguindo o padrão MVC com DTOs e interface gráfica em JavaFX.',
+    
+    'projects.gnosi.title': 'Plataforma de Cursos',
+    'projects.gnosi.description': 'Plataforma gratuita de cursos online com arquitetura fullstack robusta. Backend desenvolvido em Java Spring Boot e frontend em React.js, aplicando rigorosamente os princípios de POO, padrão MVC e boas práticas de desenvolvimento de software.',
+    
+    'projects.fabianaMoveis.title': 'Sistema de Gestão',
+    'projects.fabianaMoveis.description': 'Sistema completo de gestão desenvolvido para cliente real, incluindo rastreamento de entregas via Google Maps API, geração de relatórios, cadastro de funcionários e controle de entregas. Solução fullstack com backend em Node.js/NestJS e frontend em Next.js.',
+
+
+        // Experiences
     'experiences.title': 'EXPERIÊNCIA PROFISSIONAL',
     'experiences.subtitle': 'Minha trajetória profissional e acadêmica, registrando cada missão concluída.',
+    
+    // SENAI Experience
+    'experiences.senai.title': 'Técnico em Automação Industrial',
+    'experiences.senai.company': 'SENAI - Pedro Leopoldo',
+    'experiences.senai.duration': '2021 - 2023',
+    'experiences.senai.description': 'Formação técnica completa em Automação Industrial, com experiência prática em programação de PLCs, desenvolvimento de sistemas SCADA, e automação de processos industriais. Trabalho com programação de motores, válvulas, sistemas pneumáticos e hidráulicos, além de controle e monitoramento de equipamentos industriais para otimização de processos de produção.',
+    
+    // M2C Experience
+    'experiences.m2c.title': 'Desenvolvedor Fullstack Jr',
+    'experiences.m2c.company': 'M2C Digital',
+    'experiences.m2c.duration': 'Jan 2025 - Presente',
+    'experiences.m2c.description': 'Desenvolvimento fullstack em empresa especializada em envio de SMS, atuando no core do sistema e APIs. Utilizo Node.js com TypeScript e framework NestJS no backend, React.js no frontend, e ferramentas como RabbitMQ para administração de filas de envio. Responsável por implementar funcionalidades críticas para comunicação em massa e otimização de performance.',
 
     // Academic
     'academic.title': 'ACADÊMICO',
@@ -145,9 +167,31 @@ const translations = {
     'projects.private': 'Private',
     'projects.comingSoon': 'Coming Soon',
 
-    // Experiences
+    // Individual Projects
+    'projects.javaParking.description': 'Parking control system developed in Java focusing on Object-Oriented Programming. Implements fundamental concepts like polymorphism, encapsulation and separation of responsibilities, following the MVC pattern with DTOs and JavaFX graphical interface.',
+    
+    'projects.gnosi.title': 'Course Platform',
+    'projects.gnosi.description': 'Free online course platform with robust fullstack architecture. Backend developed in Java Spring Boot and frontend in React.js, rigorously applying OOP principles, MVC pattern and software development best practices.',
+    
+    'projects.fabianaMoveis.title': 'Management System',
+    'projects.fabianaMoveis.description': 'Complete management system developed for real client, including delivery tracking via Google Maps API, report generation, employee registration and delivery control. Fullstack solution with Node.js/NestJS backend and Next.js frontend.',
+
+
+        // Experiences
     'experiences.title': 'PROFESSIONAL EXPERIENCE',
     'experiences.subtitle': 'My professional and academic journey, recording each completed mission.',
+    
+    // SENAI Experience
+    'experiences.senai.title': 'Industrial Automation Technician',
+    'experiences.senai.company': 'SENAI - Pedro Leopoldo',
+    'experiences.senai.duration': '2021 - 2023',
+    'experiences.senai.description': 'Complete technical training in Industrial Automation, with hands-on experience in PLC programming, SCADA systems development, and industrial process automation. Work with motor programming, valves, pneumatic and hydraulic systems, plus control and monitoring of industrial equipment for production process optimization.',
+    
+    // M2C Experience
+    'experiences.m2c.title': 'Junior Fullstack Developer',
+    'experiences.m2c.company': 'M2C Digital',
+    'experiences.m2c.duration': 'Jan 2025 - Present',
+    'experiences.m2c.description': 'Fullstack development at a company specialized in SMS delivery, working on the system core and APIs. I use Node.js with TypeScript and NestJS framework on the backend, React.js on the frontend, and tools like RabbitMQ for managing delivery queues. Responsible for implementing critical features for mass communication and performance optimization.',
 
     // Academic
     'academic.title': 'ACADEMIC',

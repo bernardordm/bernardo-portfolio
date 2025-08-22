@@ -1,26 +1,27 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BriefcaseIcon, CalendarIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/hooks/use-language"
 
 interface ExperiencesSectionProps {
   inView: boolean
 }
 
 export function ExperiencesSection({ inView }: ExperiencesSectionProps) {
+  const { t } = useLanguage()
+
   const experiences = [
     {
-      title: "Técnico em Automação Industrial",
-      company: "SENAI - Pedro Leopoldo",
-      duration: "2021 - 2023",
-      description:
-        "Formação técnica completa em Automação Industrial, com experiência prática em programação de PLCs, desenvolvimento de sistemas SCADA, e automação de processos industriais. Trabalho com programação de motores, válvulas, sistemas pneumáticos e hidráulicos, além de controle e monitoramento de equipamentos industriais para otimização de processos de produção.",
+      title: t('experiences.senai.title'),
+      company: t('experiences.senai.company'),
+      duration: t('experiences.senai.duration'),
+      description: t('experiences.senai.description'),
     },
     {
-      title: "Desenvolvedor Fullstack Jr",
-      company: "M2C Digital",
-      duration: "Jan 2025 - Presente",
-      description:
-        "Desenvolvimento fullstack em empresa especializada em envio de SMS, atuando no core do sistema e APIs. Utilizo Node.js com TypeScript e framework NestJS no backend, React.js no frontend, e ferramentas como RabbitMQ para administração de filas de envio. Responsável por implementar funcionalidades críticas para comunicação em massa e otimização de performance.",
+      title: t('experiences.m2c.title'),
+      company: t('experiences.m2c.company'),
+      duration: t('experiences.m2c.duration'),
+      description: t('experiences.m2c.description'),
     },
   ]
 
@@ -39,7 +40,7 @@ export function ExperiencesSection({ inView }: ExperiencesSectionProps) {
             inView ? "animate-fade-in-up" : "opacity-0",
           )}
         >
-          Experiência Profissional
+          {t('experiences.title')}
         </h2>
         <p
           className={cn(
@@ -47,7 +48,7 @@ export function ExperiencesSection({ inView }: ExperiencesSectionProps) {
             inView ? "animate-fade-in-up delay-200" : "opacity-0",
           )}
         >
-          Minha trajetória profissional e acadêmica, registrando cada missão concluída.
+          {t('experiences.subtitle')}
         </p>
         <div className="grid gap-8 py-12 sm:grid-cols-1 lg:grid-cols-2">
           {experiences.map((exp, index) => (
