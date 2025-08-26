@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { GithubIcon, ExternalLinkIcon, RocketIcon } from "lucide-react"
+import { GithubIcon, ExternalLinkIcon, RocketIcon, PlayCircleIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { useLanguage } from "@/hooks/use-language"
@@ -30,7 +30,8 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
       githubLink: "#",
       liveLink: "#",
       featured: true,
-      image: "/Gnosi.jpeg"
+      image: "/Gnosi.jpeg",
+      video: "https://www.youtube.com/embed/dG2RQ9XAAqE"
     },
     {
       title: "Fabiana Móveis - " + t('projects.fabianaMoveis.title'),
@@ -39,9 +40,13 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
       githubLink: "#",
       liveLink: "#",
       featured: true,
-      image: "/FabianaMoveis.jpeg"
+      image: "/FabianaMoveis.jpeg",
+      video: "https://www.youtube.com/embed/4R1hQCg9AQ8"
     },
   ]
+
+  // Filtra projetos que possuem vídeo
+  const projectsWithVideo = projects.filter(p => p.video)
 
   return (
     <div className="relative w-full h-full min-h-screen flex flex-col items-center justify-center text-center p-4 md:p-8 bg-background overflow-hidden border-b border-primary/20">
@@ -58,7 +63,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
             inView ? "animate-fade-in-up" : "opacity-0",
           )}
         >
-          {t('projects.title')}
+          {t("projects.title")}
         </h2>
         <p
           className={cn(
@@ -66,8 +71,9 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
             inView ? "animate-fade-in-up delay-200" : "opacity-0",
           )}
         >
-          {t('projects.subtitle')}
+          {t("projects.subtitle")}
         </p>
+        {/* Grid de cards dos projetos */}
         <div className="grid gap-8 py-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <Card
@@ -81,10 +87,10 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
             >
               {project.featured && (
                 <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-bl-md font-semibold z-10">
-                  {t('projects.highlight')}
+                  {t("projects.highlight")}
                 </div>
               )}
-              
+
               {/* Imagem do Projeto */}
               <div className="relative w-full h-48 overflow-hidden">
                 <Image
@@ -131,7 +137,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
                       className="border-primary text-primary hover:bg-primary/10 bg-transparent flex-1"
                       onClick={() => window.open(project.githubLink, "_blank")}
                     >
-                      <GithubIcon className="w-4 h-4 mr-1" /> {t('projects.github')}
+                      <GithubIcon className="w-4 h-4 mr-1" /> {t("projects.github")}
                     </Button>
                   ) : (
                     <Button
@@ -140,7 +146,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
                       className="border-gray-500 text-gray-500 cursor-not-allowed flex-1"
                       disabled
                     >
-                      <GithubIcon className="w-4 h-4 mr-1" /> {t('projects.private')}
+                      <GithubIcon className="w-4 h-4 mr-1" /> {t("projects.private")}
                     </Button>
                   )}
                   {project.liveLink !== "#" ? (
@@ -149,7 +155,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
                       className="bg-primary text-primary-foreground hover:bg-primary/90 flex-1"
                       onClick={() => window.open(project.liveLink, "_blank")}
                     >
-                      <ExternalLinkIcon className="w-4 h-4 mr-1" /> {t('projects.live')}
+                      <ExternalLinkIcon className="w-4 h-4 mr-1" /> {t("projects.live")}
                     </Button>
                   ) : (
                     <Button 
@@ -157,7 +163,7 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
                       className="bg-gray-500 text-gray-100 cursor-not-allowed flex-1"
                       disabled
                     >
-                      <ExternalLinkIcon className="w-4 h-4 mr-1" /> {t('projects.comingSoon')}
+                      <ExternalLinkIcon className="w-4 h-4 mr-1" /> {t("projects.comingSoon")}
                     </Button>
                   )}
                 </div>
@@ -165,6 +171,37 @@ export function ProjectsSection({ inView }: ProjectsSectionProps) {
             </Card>
           ))}
         </div>
+
+        {/* Grid de vídeos dos projetos */}
+        {projectsWithVideo.length > 0 && (
+          <div className="mt-8">
+            <h3 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2">
+              <PlayCircleIcon className="w-6 h-6" />
+              {t("projects.videos") || "Demonstrações em Vídeo"}
+            </h3>
+            <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              {projectsWithVideo.map((project, idx) => (
+                <Card
+                  key={idx}
+                  className="overflow-hidden border border-primary/30 shadow-lg bg-card flex flex-col items-center"
+                >
+                  <div className="w-full aspect-video bg-black">
+                    <iframe
+                      src={project.video}
+                      title={`Demonstração do projeto ${project.title}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <CardContent className="flex flex-col items-center pt-4">
+                    <Badge className="mb-2">{project.title}</Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

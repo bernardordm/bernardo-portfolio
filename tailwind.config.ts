@@ -96,7 +96,18 @@ const config = {
           "0%": { backgroundPosition: "0% 50%" },
           "100%": { backgroundPosition: "100% 50%" },
         },
-      },
+        
+        "matrix-fall": {
+    "0%": { transform: "translateY(-100px)", opacity: "0" },
+    "10%": { opacity: "1" },
+    "90%": { opacity: "1" },
+    "100%": { transform: "translateY(100vh)", opacity: "0" },
+  },
+  "glow-pulse": {
+    "0%, 100%": { textShadow: "0 0 5px currentColor" },
+    "50%": { textShadow: "0 0 20px currentColor, 0 0 30px currentColor" },
+  },
+},
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
@@ -107,6 +118,8 @@ const config = {
         "pulse-glow": "pulse-glow 2s infinite ease-in-out",
         "border-pulse": "border-pulse 3s infinite alternate",
         "background-pan": "background-pan 10s linear infinite alternate",
+        "matrix-fall": "matrix-fall 3s linear infinite",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite alternate",
       },
     },
   },

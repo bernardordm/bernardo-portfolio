@@ -1,50 +1,50 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { GamepadIcon, BookOpenIcon, CpuIcon, SparklesIcon, NetworkIcon, CodeIcon, BrainIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/hooks/use-language"
 
 interface InterestsSectionProps {
   inView: boolean
 }
 
 export function InterestsSection({ inView }: InterestsSectionProps) {
+  const { t } = useLanguage()
+
   const interests = [
     {
-      name: "Desenvolvimento Web",
+      name: t("interests.webdev"),
       icon: <CodeIcon className="w-8 h-8 text-primary" />,
-      description:
-        "Paixão por criar aplicações web modernas e responsivas, explorando novas tecnologias e frameworks.",
+      description: t("interests.webdev_desc"),
     },
     {
-      name: "Machine Learning",
+      name: t("interests.ml"),
       icon: <BrainIcon className="w-8 h-8 text-primary" />,
-      description: "Fascínio pela inteligência artificial e algoritmos de aprendizado de máquina para resolver problemas complexos.",
+      description: t("interests.ml_desc"),
     },
     {
-      name: "Leitura Técnica",
+      name: t("interests.techreading"),
       icon: <BookOpenIcon className="w-8 h-8 text-primary" />,
-      description:
-        "Manter-me atualizado com as últimas tendências e aprofundar conhecimentos em diversas áreas da tecnologia.",
+      description: t("interests.techreading_desc"),
     },
     {
-      name: "Inteligência Artificial",
+      name: t("interests.ai"),
       icon: <CpuIcon className="w-8 h-8 text-primary" />,
-      description:
-        "Explorar o potencial da IA, redes neurais e suas aplicações práticas em diferentes domínios.",
+      description: t("interests.ai_desc"),
     },
     {
-      name: "Desenvolvimento de Jogos",
+      name: t("interests.gamedev"),
       icon: <GamepadIcon className="w-8 h-8 text-primary" />,
-      description: "Interesse em criar experiências interativas e imersivas, combinando programação e criatividade.",
+      description: t("interests.gamedev_desc"),
     },
     {
-      name: "Computação Quântica",
+      name: t("interests.quantum"),
       icon: <NetworkIcon className="w-8 h-8 text-primary" />,
-      description: "Curiosidade sobre os avanços e o futuro da computação quântica e suas aplicações revolucionárias.",
+      description: t("interests.quantum_desc"),
     },
     {
-      name: "Cultura Pop & Ficção Científica",
+      name: t("interests.popculture"),
       icon: <SparklesIcon className="w-8 h-8 text-primary" />,
-      description: "Apreciar universos de ficção científica, filmes, séries e jogos que inspiram a criatividade.",
+      description: t("interests.popculture_desc"),
     },
   ]
 
@@ -59,19 +59,19 @@ export function InterestsSection({ inView }: InterestsSectionProps) {
       <div className="relative z-10 space-y-8 max-w-6xl bg-card/80 backdrop-blur-sm border border-primary/30 p-8 rounded-lg shadow-xl animate-border-pulse">
         <h2
           className={cn(
-            "text-4xl md:text-5xl font-bold text-primary tracking-tight",
+            "font-jetbrains text-4xl md:text-5xl font-bold text-primary tracking-tight",
             inView ? "animate-fade-in-up" : "opacity-0",
           )}
         >
-          INTERESSES PROFISSIONAIS
+          {t("interests.title")}
         </h2>
         <p
           className={cn(
-            "text-lg md:text-xl text-muted-foreground leading-relaxed",
+            "font-jetbrains text-lg md:text-xl text-muted-foreground leading-relaxed",
             inView ? "animate-fade-in-up delay-200" : "opacity-0",
           )}
         >
-          Além do código, o que alimenta minha curiosidade e me impulsiona a explorar novos domínios.
+          {t("interests.subtitle")}
         </p>
 
         {/* Grid de Interesses */}
@@ -85,7 +85,7 @@ export function InterestsSection({ inView }: InterestsSectionProps) {
               )}
               style={{ animationDelay: `${300 + index * 100}ms` }}
             >
-              <CardHeader className="flex flex-col items-center space-y-3 pb-2">
+              <CardHeader className="font-jetbrains flex flex-col items-center space-y-3 pb-2">
                 {interest.icon}
                 <CardTitle className="text-lg font-bold text-foreground">{interest.name}</CardTitle>
               </CardHeader>

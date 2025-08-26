@@ -35,7 +35,16 @@
     --radius: 0.5rem;
   }
 }
-
+@layer utilities {
+  .font-vt323 {
+    font-family: var(--font-vt323), monospace;
+  }
+}
+@layer utilities {
+  .font-jetbrains {
+    font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+}
 @layer base {
   * {
     @apply border-border;

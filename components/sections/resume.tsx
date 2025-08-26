@@ -43,7 +43,7 @@ export function ResumeSection({ inView }: ResumeSectionProps) {
 
         <h1
           className={cn(
-            "text-5xl md:text-7xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary to-green-300 drop-shadow-lg",
+            "text-5xl font-jetbrains  md:text-7xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary to-green-300 drop-shadow-lg",
             inView ? "animate-fade-in-up delay-200" : "opacity-0",
           )}
         >
@@ -51,7 +51,7 @@ export function ResumeSection({ inView }: ResumeSectionProps) {
         </h1>
         <p
           className={cn(
-            "text-xl md:text-2xl text-muted-foreground leading-relaxed",
+            "text-xl font-jetbrains md:text-2xl text-muted-foreground leading-relaxed",
             inView ? "animate-fade-in-up delay-300" : "opacity-0",
           )}
         >
@@ -61,7 +61,7 @@ export function ResumeSection({ inView }: ResumeSectionProps) {
         </p>
         <div
           className={cn(
-            "flex flex-col sm:flex-row gap-4 justify-center",
+            "flex font-jetbrains flex-col sm:flex-row gap-4 justify-center",
             inView ? "animate-fade-in-up delay-400" : "opacity-0",
           )}
         >

@@ -36,7 +36,7 @@ export function ExperiencesSection({ inView }: ExperiencesSectionProps) {
       <div className="relative z-10 space-y-8 max-w-5xl bg-card/80 backdrop-blur-sm border border-primary/30 p-8 rounded-lg shadow-xl animate-border-pulse">
         <h2
           className={cn(
-            "text-4xl md:text-5xl font-bold text-primary tracking-tight",
+            "font-jetbrains text-4xl md:text-5xl font-bold text-primary tracking-tight",
             inView ? "animate-fade-in-up" : "opacity-0",
           )}
         >
@@ -44,7 +44,7 @@ export function ExperiencesSection({ inView }: ExperiencesSectionProps) {
         </h2>
         <p
           className={cn(
-            "text-lg md:text-xl text-muted-foreground leading-relaxed",
+            "font-jetbrains text-lg md:text-xl text-muted-foreground leading-relaxed",
             inView ? "animate-fade-in-up delay-200" : "opacity-0",
           )}
         >
@@ -63,9 +63,9 @@ export function ExperiencesSection({ inView }: ExperiencesSectionProps) {
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <BriefcaseIcon className="w-7 h-7 text-primary" />
-                  <CardTitle className="text-xl font-bold text-foreground">{exp.title}</CardTitle>
+                  <CardTitle className="font-jetbrains text-xl font-bold text-foreground">{exp.title}</CardTitle>
                 </div>
-                <div className="flex items-center text-muted-foreground text-sm gap-2">
+                <div className="font-jetbrains flex items-center text-muted-foreground text-sm gap-2">
                   <CalendarIcon className="w-4 h-4" />
                   <span>
                     {exp.company} | {exp.duration}

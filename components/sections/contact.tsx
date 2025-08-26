@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { MailIcon, PhoneIcon, LinkedinIcon, GithubIcon, InstagramIcon, SendIcon, UserIcon, ClockIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/hooks/use-language"
 
 interface ContactSectionProps {
   inView: boolean
@@ -25,30 +26,30 @@ interface FormErrors {
 }
 
 export function ContactSection({ inView }: ContactSectionProps) {
+  const { t } = useLanguage()
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     subject: "",
     message: ""
   })
-
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const contactInfo = [
     {
       icon: <MailIcon className="w-6 h-6" />,
-      label: "E-mail",
-      value: "bresende66@gmail.com",
-      href: "mailto:bresende66@gmail.com",
-      description: "Resposta em até 24h"
+      label: t('contact.email'),
+      value: "bernardordm@outlook.com",
+      href: "mailto:bernardordm@outlook.com",
+      description: t('contact.email_description')
     },
     {
       icon: <PhoneIcon className="w-6 h-6" />,
-      label: "Telefone",
+      label: t('contact.phone'),
       value: "+55 (31) 98610-0574",
       href: "tel:+5531986100574",
-      description: "WhatsApp disponível"
+      description: t('contact.phone_description')
     },
   ]
 
@@ -58,54 +59,50 @@ export function ContactSection({ inView }: ContactSectionProps) {
       icon: <LinkedinIcon className="w-5 h-5" />,
       href: "https://www.linkedin.com/in/bernardo-resende1167071b9/",
       color: "border-[#0077B5] text-[#0077B5] hover:bg-[#0077B5]/10",
-      description: "Conecte-se profissionalmente"
+      description: t('contact.linkedin')
     },
     {
       name: "GitHub",
       icon: <GithubIcon className="w-5 h-5" />,
       href: "https://github.com/bernardordm",
       color: "border-gray-400 text-gray-400 hover:bg-gray-400/10",
-      description: "Confira meus projetos"
+      description: t('contact.github')
     },
     {
       name: "Instagram",
       icon: <InstagramIcon className="w-5 h-5" />,
       href: "https://instagram.com/bernardoresendem",
       color: "border-pink-500 text-pink-500 hover:bg-pink-500/10",
-      description: "Acompanhe minha jornada"
+      description: t('contact.instagram')
     }
   ]
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {}
 
-    // Validar nome
     if (!formData.name.trim()) {
-      newErrors.name = "Nome é obrigatório"
+      newErrors.name = t('contact.form.error.name_required')
     } else if (formData.name.trim().length < 2) {
-      newErrors.name = "Nome deve ter pelo menos 2 caracteres"
+      newErrors.name = t('contact.form.error.name_short')
     }
 
-    // Validar email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!formData.email.trim()) {
-      newErrors.email = "E-mail é obrigatório"
+      newErrors.email = t('contact.form.error.email_required')
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "E-mail deve ter um formato válido"
+      newErrors.email = t('contact.form.error.email_invalid')
     }
 
-    // Validar assunto
     if (!formData.subject.trim()) {
-      newErrors.subject = "Assunto é obrigatório"
+      newErrors.subject = t('contact.form.error.subject_required')
     } else if (formData.subject.trim().length < 5) {
-      newErrors.subject = "Assunto deve ter pelo menos 5 caracteres"
+      newErrors.subject = t('contact.form.error.subject_short')
     }
 
-    // Validar mensagem
     if (!formData.message.trim()) {
-      newErrors.message = "Mensagem é obrigatória"
+      newErrors.message = t('contact.form.error.message_required')
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Mensagem deve ter pelo menos 10 caracteres"
+      newErrors.message = t('contact.form.error.message_short')
     }
 
     setErrors(newErrors)
@@ -118,8 +115,6 @@ export function ContactSection({ inView }: ContactSectionProps) {
       ...prev,
       [name]: value
     }))
-
-    // Limpar erro do campo quando o usuário começar a digitar
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
@@ -130,39 +125,24 @@ export function ContactSection({ inView }: ContactSectionProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    if (!validateForm()) {
-      return
-    }
-
+    if (!validateForm()) return
     setIsSubmitting(true)
-
     try {
-      // Simular delay de envio
       await new Promise(resolve => setTimeout(resolve, 1000))
-
-      const mailtoLink = `mailto:bresende66@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-        `Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`
+      const mailtoLink = `mailto:bernardordm@outlook.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+        `${t('contact.form.name')}: ${formData.name}\n${t('contact.form.email')}: ${formData.email}\n\n${t('contact.form.message')}:\n${formData.message}`
       )}`
-      
       window.location.href = mailtoLink
-
-      // Limpar formulário após sucesso
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
-      })
+      setFormData({ name: "", email: "", subject: "", message: "" })
     } catch (error) {
-      console.error('Erro ao enviar:', error)
+      // erro de envio
     } finally {
       setIsSubmitting(false)
     }
   }
 
   return (
-    <div className="relative w-full h-full min-h-screen flex flex-col items-center justify-center text-center p-4 md:p-8 bg-secondary overflow-hidden">
+    <div className="font-jetbrains relative w-full h-full min-h-screen flex flex-col items-center justify-center text-center p-4 md:p-8 bg-secondary overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-5">
         <div
           className="w-full h-full bg-[url('/futuristic-circuit.png')] bg-cover bg-center"
@@ -174,27 +154,25 @@ export function ContactSection({ inView }: ContactSectionProps) {
         <div className="text-center space-y-4">
           <h2
             className={cn(
-              "text-4xl md:text-5xl font-bold text-primary tracking-tight",
+              "font-jetbrains text-4xl md:text-5xl font-bold text-primary tracking-tight",
               inView ? "animate-fade-in-up" : "opacity-0",
             )}
           >
-            CONTATOS
+            {t('contact.title')}
           </h2>
           <p
             className={cn(
-              "text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto",
+              "font-jetbrains text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto",
               inView ? "animate-fade-in-up delay-200" : "opacity-0",
             )}
           >
-            Estou sempre aberto a novas oportunidades, novos projetos e conexões profissionais. 
-            Entre em contato e vamos construir algo incrível juntos!
+            {t('contact.subtitle')}
           </p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Informações de Contato */}
           <div className="space-y-6">
-            {/* Cards de Contato */}
             {contactInfo.map((contact, index) => (
               <Card
                 key={index}
@@ -226,7 +204,7 @@ export function ContactSection({ inView }: ContactSectionProps) {
               )}
             >
               <CardHeader>
-                <CardTitle className="text-foreground">Redes Sociais</CardTitle>
+                <CardTitle className="text-foreground">{t('contact.social')}</CardTitle>
               </CardHeader>
               <CardContent className="flex flex-wrap gap-3">
                 {socialLinks.map((social, index) => (
@@ -258,10 +236,10 @@ export function ContactSection({ inView }: ContactSectionProps) {
                     <div className="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping opacity-20"></div>
                   </div>
                   <div className="text-left">
-                    <p className="font-semibold text-green-400">Disponível para Projetos</p>
+                    <p className="font-semibold text-green-400">{t('contact.available')}</p>
                     <p className="text-sm text-muted-foreground flex items-center gap-1">
                       <ClockIcon className="w-3 h-3" />
-                      Respondo em até 24 horas
+                      {t('contact.available_description')}
                     </p>
                   </div>
                 </div>
@@ -279,7 +257,7 @@ export function ContactSection({ inView }: ContactSectionProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-foreground">
                 <SendIcon className="w-5 h-5 text-primary" />
-                Envie um E-mail!
+                {t('contact.form.title')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -288,13 +266,13 @@ export function ContactSection({ inView }: ContactSectionProps) {
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground flex items-center gap-1">
                       <UserIcon className="w-3 h-3" />
-                      Nome *
+                      {t('contact.form.name')}
                     </label>
                     <Input
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="Seu nome completo"
+                      placeholder={t('contact.form.name_placeholder')}
                       className={cn(
                         "border-primary/30 focus:border-primary",
                         errors.name && "border-red-500 focus:border-red-500"
@@ -307,14 +285,14 @@ export function ContactSection({ inView }: ContactSectionProps) {
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground flex items-center gap-1">
                       <MailIcon className="w-3 h-3" />
-                      E-mail *
+                      {t('contact.form.email')}
                     </label>
                     <Input
                       name="email"
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="seu@email.com"
+                      placeholder={t('contact.form.email_placeholder')}
                       className={cn(
                         "border-primary/30 focus:border-primary",
                         errors.email && "border-red-500 focus:border-red-500"
@@ -328,13 +306,13 @@ export function ContactSection({ inView }: ContactSectionProps) {
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">
-                    Assunto *
+                    {t('contact.form.subject')}
                   </label>
                   <Input
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    placeholder="Sobre o que você gostaria de conversar?"
+                    placeholder={t('contact.form.subject_placeholder')}
                     className={cn(
                       "border-primary/30 focus:border-primary",
                       errors.subject && "border-red-500 focus:border-red-500"
@@ -347,13 +325,13 @@ export function ContactSection({ inView }: ContactSectionProps) {
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">
-                    Mensagem *
+                    {t('contact.form.message')}
                   </label>
                   <Textarea
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="Descreva seu projeto, ideia ou como posso ajudar..."
+                    placeholder={t('contact.form.message_placeholder')}
                     rows={5}
                     className={cn(
                       "border-primary/30 focus:border-primary resize-none",
@@ -374,18 +352,18 @@ export function ContactSection({ inView }: ContactSectionProps) {
                   {isSubmitting ? (
                     <>
                       <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2"></div>
-                      Enviando...
+                      {t('contact.form.sending')}
                     </>
                   ) : (
                     <>
                       <SendIcon className="w-4 h-4 mr-2" />
-                      Enviar E-mail
+                      {t('contact.form.send')}
                     </>
                   )}
                 </Button>
                 
                 <p className="text-xs text-muted-foreground text-center">
-                  Ao enviar, você será redirecionado para seu cliente de e-mail padrão.
+                  {t('contact.form.redirect')}
                 </p>
               </form>
             </CardContent>

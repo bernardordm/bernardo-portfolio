@@ -22,34 +22,34 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
       <div className="relative z-10 space-y-8 max-w-7xl">
         <h2
           className={cn(
-            "text-4xl md:text-5xl font-bold text-primary tracking-tight",
+            "font-jetbrains text-4xl md:text-5xl font-bold text-primary tracking-tight",
             inView ? "animate-fade-in-up" : "opacity-0",
           )}
         >
           {t('skills.title')}
         </h2>
         <p
-          className={cn(
-            "text-lg md:text-xl text-muted-foreground leading-relaxed",
+          className={cn( 
+            "font-jetbrains text-lg md:text-xl text-muted-foreground leading-relaxed",
             inView ? "animate-fade-in-up delay-200" : "opacity-0",
           )}
         >
           {t('skills.subtitle')}
         </p>
-        
-        <div className="grid gap-6 py-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+
+        <div className="font-jetbrains grid gap-6 py-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
           <Card
             className={cn(
-              "bg-card border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 h-fit",
+              "font-jetbrains bg-card border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300 h-fit",
               inView ? "animate-fade-in-up delay-300" : "opacity-0",
             )}
           >
-            <CardHeader className="flex flex-row items-center space-x-4 pb-4">
+            <CardHeader className="flex  flex-row items-center space-x-4 pb-4">
               <CodeIcon className="w-8 h-8 text-primary" />
-              <CardTitle className="text-xl font-bold text-foreground">{t('skills.languages')}</CardTitle>
+              <CardTitle className="font-jetbrains text-xl font-bold text-foreground">{t('skills.languages')}</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
-              <Badge className="bg-primary/20 text-primary hover:bg-primary/30 text-sm px-3 py-1 border border-primary">
+              <Badge className=" font-jetbrains bg-primary/20 text-primary hover:bg-primary/30 text-sm px-3 py-1 border border-primary">
                 JavaScript
               </Badge>
               <Badge className="bg-primary/20 text-primary hover:bg-primary/30 text-sm px-3 py-1 border border-primary">
@@ -175,9 +175,6 @@ export function SkillsSection({ inView }: SkillsSectionProps) {
               </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
-              <Badge className="bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 text-sm px-3 py-1 border border-blue-500 animate-pulse">
-                Cloud Computing
-              </Badge>
               <Badge className="bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 text-sm px-3 py-1 border border-blue-500 animate-pulse" style={{ animationDelay: "0.5s" }}>
                 AWS
               </Badge>
