@@ -235,7 +235,7 @@ Sistema completo desenvolvido para cliente real com rastreamento via Google Maps
 
 ## 🎓 Seção Acadêmica
 
-- **Formação**: Técnico em Automação Industrial (SENAI) + Bacharelado em Sistemas de Informação (Una)
+- **Formação**: Técnico em Automação Industrial (SENAI) + Bacharelado em Engenharia Software (PUC Minas)
 - **Pesquisa**: Artigo sobre otimização de integrais usando LLMs
 - **Certificações**: 9+ certificações em tecnologias web e IA
 - **LinkedIn**: Integração com perfil profissional
