@@ -21,7 +21,6 @@ O protótipo implementado demonstra a versão funcional do design:
 ## 🚀 Funcionalidades
 
 - **Interface Futurística**: Design moderno com tema escuro e elementos neon inspirados em interfaces sci-fi
-- **Background Animado**: Partículas Matrix-style verdes em movimento contínuo
 - **Sistema de Idiomas**: Suporte completo para Português e Inglês com traduções dinâmicas
 - **Navegação Fluida**: Header fixo com navegação suave entre seções usando scroll automático
 - **Animações Interativas**: Animações de entrada baseadas em scroll usando Intersection Observer
@@ -52,7 +51,6 @@ O protótipo implementado demonstra a versão funcional do design:
 - **Biblioteca de Componentes**: shadcn/ui components
 - **Animações**: 
   - Tailwind CSS + CSS custom animations
-  - Partículas Matrix em Canvas HTML5
 - **Detecção de Scroll**: react-intersection-observer
 - **Ícones**: Lucide React
 - **Fontes**: 
@@ -191,7 +189,7 @@ xl: 1280px  # Desktops
 - Persistência da preferência do usuário
 
 ### Animações e Efeitos Visuais
-- Background Matrix com partículas verdes animadas
+- Estilo Matrix com partículas verdes animadas
 - Sprite personalizada com efeitos hover e partículas
 - Animações baseadas em scroll usando Intersection Observer
 - Transições suaves entre seções
@@ -245,7 +243,6 @@ Sistema completo desenvolvido para cliente real com rastreamento via Google Maps
 ## 🎮 Elementos de Gamificação
 
 - Sprite personalizada pixelada com animações
-- Partículas Matrix-style no background
 - Efeitos sonoros visuais (glow, pulse)
 - Temas de ficção científica e cyberpunk
 - Transições cinematográficas
