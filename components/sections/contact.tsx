@@ -1,9 +1,10 @@
 import { useState } from "react"
+import emailjs from '@emailjs/browser'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { MailIcon, PhoneIcon, LinkedinIcon, GithubIcon, InstagramIcon, SendIcon, UserIcon, ClockIcon } from "lucide-react"
+import { MailIcon, PhoneIcon, LinkedinIcon, GithubIcon, InstagramIcon, SendIcon, UserIcon, ClockIcon, CheckCircleIcon, AlertCircleIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useLanguage } from "@/hooks/use-language"
 
@@ -25,6 +26,8 @@ interface FormErrors {
   message?: string
 }
 
+type SubmitStatus = 'idle' | 'success' | 'error'
+
 export function ContactSection({ inView }: ContactSectionProps) {
   const { t } = useLanguage()
   const [formData, setFormData] = useState<FormData>({
@@ -35,6 +38,13 @@ export function ContactSection({ inView }: ContactSectionProps) {
   })
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle')
+
+  const emailjsConfig = {
+    serviceId: 'service_ksy4dbc',
+    templateId: 'template_ikrvt3q',
+    publicKey: 'GvI7o5TpU5drgn8_b',
+  }
 
   const contactInfo = [
     {
@@ -126,16 +136,48 @@ export function ContactSection({ inView }: ContactSectionProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateForm()) return
+    
     setIsSubmitting(true)
+    setSubmitStatus('idle')
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      const mailtoLink = `mailto:bernardordm@outlook.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-        `${t('contact.form.name')}: ${formData.name}\n${t('contact.form.email')}: ${formData.email}\n\n${t('contact.form.message')}:\n${formData.message}`
-      )}`
-      window.location.href = mailtoLink
-      setFormData({ name: "", email: "", subject: "", message: "" })
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'bernardordm@outlook.com'
+      }
+
+      console.log('Enviando email com EmailJS...', templateParams)
+
+      const result = await emailjs.send(
+        emailjsConfig.serviceId,
+        emailjsConfig.templateId,
+        templateParams,
+        emailjsConfig.publicKey
+      )
+
+      console.log('Resultado do EmailJS:', result)
+
+      if (result.status === 200) {
+        setSubmitStatus('success')
+        setFormData({ name: "", email: "", subject: "", message: "" })
+        
+        setTimeout(() => setSubmitStatus('idle'), 5000)
+      } else {
+        throw new Error('Falha no envio')
+      }
     } catch (error) {
-      // erro de envio
+      console.error('Erro ao enviar email:', error)
+      setSubmitStatus('error')
+      
+      setTimeout(() => {
+        const mailtoLink = `mailto:bernardordm@outlook.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+          `${t('contact.form.name')}: ${formData.name}\n${t('contact.form.email')}: ${formData.email}\n\n${t('contact.form.message')}:\n${formData.message}`
+        )}`
+        window.open(mailtoLink)
+      }, 2000)
     } finally {
       setIsSubmitting(false)
     }
@@ -277,6 +319,7 @@ export function ContactSection({ inView }: ContactSectionProps) {
                         "border-primary/30 focus:border-primary",
                         errors.name && "border-red-500 focus:border-red-500"
                       )}
+                      disabled={isSubmitting}
                     />
                     {errors.name && (
                       <p className="text-red-500 text-xs">{errors.name}</p>
@@ -297,6 +340,7 @@ export function ContactSection({ inView }: ContactSectionProps) {
                         "border-primary/30 focus:border-primary",
                         errors.email && "border-red-500 focus:border-red-500"
                       )}
+                      disabled={isSubmitting}
                     />
                     {errors.email && (
                       <p className="text-red-500 text-xs">{errors.email}</p>
@@ -317,6 +361,7 @@ export function ContactSection({ inView }: ContactSectionProps) {
                       "border-primary/30 focus:border-primary",
                       errors.subject && "border-red-500 focus:border-red-500"
                     )}
+                    disabled={isSubmitting}
                   />
                   {errors.subject && (
                     <p className="text-red-500 text-xs">{errors.subject}</p>
@@ -337,6 +382,7 @@ export function ContactSection({ inView }: ContactSectionProps) {
                       "border-primary/30 focus:border-primary resize-none",
                       errors.message && "border-red-500 focus:border-red-500"
                     )}
+                    disabled={isSubmitting}
                   />
                   {errors.message && (
                     <p className="text-red-500 text-xs">{errors.message}</p>
@@ -362,9 +408,26 @@ export function ContactSection({ inView }: ContactSectionProps) {
                   )}
                 </Button>
                 
-                <p className="text-xs text-muted-foreground text-center">
-                  {t('contact.form.redirect')}
-                </p>
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="flex items-center justify-center gap-2 text-green-500 text-sm bg-green-500/10 border border-green-500/20 rounded-md p-3">
+                    <CheckCircleIcon className="w-4 h-4" />
+                    Email enviado com sucesso! Obrigado pelo contato.
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="flex items-center justify-center gap-2 text-red-500 text-sm bg-red-500/10 border border-red-500/20 rounded-md p-3">
+                    <AlertCircleIcon className="w-4 h-4" />
+                    Erro no envio. Redirecionando para seu cliente de email...
+                  </div>
+                )}
+
+                {submitStatus === 'idle' && (
+                  <p className="text-xs text-muted-foreground text-center">
+                    Seus dados são enviados diretamente para meu email através do EmailJS.
+                  </p>
+                )}
               </form>
             </CardContent>
           </Card>
