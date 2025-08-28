@@ -69,63 +69,63 @@ O protótipo implementado demonstra a versão funcional do design:
 ```
 bernardo-portfolio/
 │
-├── 📁 app/                          # Diretório principal do Next.js App Router
-│   ├── globals.css                  # Estilos globais, variáveis CSS e tema escuro
-│   ├── layout.tsx                   # Layout principal com fontes personalizadas
-│   └── page.tsx                     # Página principal com navegação entre seções
+├── 📁 app/                         
+│   ├── globals.css            
+│   ├── layout.tsx                   
+│   └── page.tsx                   
 │
-├── 📁 components/                   # Componentes React reutilizáveis
-│   ├── header.tsx                   # Header fixo com navegação e seletor de idioma
-│   ├── MatrixParticles.tsx          # Background animado com partículas verdes
+├── 📁 components/                 
+│   ├── header.tsx                 
+│   ├── MatrixParticles.tsx       
 │   │
-│   ├── 📁 sections/                # Seções específicas do portfolio
-│   │   ├── resume.tsx              # Seção hero com foto e apresentação
-│   │   ├── about-me.tsx            # Seção sobre mim com sprite personalizada
-│   │   ├── skills.tsx              # Seção de habilidades técnicas categorizadas
-│   │   ├── experiences.tsx         # Seção de experiências profissionais
-│   │   ├── projects.tsx            # Seção de projetos com screenshots e vídeos
-│   │   ├── academic.tsx            # Seção acadêmica com pesquisas e certificações
-│   │   ├── interests.tsx           # Seção de interesses pessoais
-│   │   └── contact.tsx             # Seção de contato com formulário funcional
+│   ├── 📁 sections/               
+│   │   ├── resume.tsx             
+│   │   ├── about-me.tsx        
+│   │   ├── skills.tsx           
+│   │   ├── experiences.tsx        
+│   │   ├── projects.tsx           
+│   │   ├── academic.tsx           
+│   │   ├── interests.tsx          
+│   │   └── contact.tsx            
 │   │
-│   └── 📁 ui/                      # Componentes UI base (shadcn/ui)
-│       ├── button.tsx              # Componente de botão com variantes
-│       ├── card.tsx                # Componente de card responsivo
-│       ├── badge.tsx               # Componente de badge com cores temáticas
-│       ├── input.tsx               # Componente de input com validação
-│       ├── textarea.tsx            # Componente de textarea
+│   └── 📁 ui/                     
+│       ├── button.tsx             
+│       ├── card.tsx               
+│       ├── badge.tsx              
+│       ├── input.tsx               
+│       ├── textarea.tsx           
 │       └── [outros componentes UI]
 │
-├── 📁 hooks/                       # Hooks React personalizados
-│   ├── use-language.tsx            # Hook para internacionalização PT/EN
-│   ├── use-mobile.tsx              # Hook para detecção de dispositivos móveis
-│   └── use-toast.ts                # Hook para sistema de notificações
+├── 📁 hooks/                      
+│   ├── use-language.tsx           
+│   ├── use-mobile.tsx             
+│   └── use-toast.ts              
 │
-├── 📁 lib/                         # Utilitários e funções auxiliares
-│   └── utils.ts                    # Funções utilitárias (cn, clsx, etc.)
+├── 📁 lib/                         
+│   └── utils.ts                   
 │
-├── 📁 public/                      # Arquivos estáticos
-│   ├── photo.jpeg                  # Foto pessoal para seção hero
-│   ├── sprite.png                  # Avatar pixelado personalizado
-│   ├── JavaParking.jpeg            # Screenshot projeto Java Parking
-│   ├── Gnosi.jpeg                  # Screenshot projeto Gnosi
-│   ├── FabianaMoveis.jpeg          # Screenshot projeto Fabiana Móveis
-│   ├── projetoAcademico.pdf        # Artigo científico para download
-│   ├── futuristic-circuit.png      # Textura de circuito futurístico
-│   ├── futuristic-grid.png         # Grid futurístico animado
-│   └── abstract-grid.png           # Imagem de fundo em grid
+├── 📁 public/                     
+│   ├── photo.jpeg                
+│   ├── sprite.png                 
+│   ├── JavaParking.jpeg          
+│   ├── Gnosi.jpeg                 
+│   ├── FabianaMoveis.jpeg         
+│   ├── projetoAcademico.pdf       
+│   ├── futuristic-circuit.png      
+│   ├── futuristic-grid.png        
+│   └── abstract-grid.png           
 │
-├── 📁 styles/                      # Estilos adicionais
-│   └── globals.css                 # Estilos globais complementares
+├── 📁 styles/                     
+│   └── globals.css                
 │
-├── components.json                 # Configuração do shadcn/ui
-├── next.config.mjs                 # Configuração do Next.js
-├── tailwind.config.ts              # Configuração do Tailwind CSS com animações customizadas
-├── tsconfig.json                   # Configuração do TypeScript
-├── postcss.config.mjs              # Configuração do PostCSS
-├── package.json                    # Dependências e scripts
-├── pnpm-lock.yaml                  # Lock file do pnpm
-└── README.md                       # Documentação do projeto
+├── components.json                
+├── next.config.mjs                
+├── tailwind.config.ts             
+├── tsconfig.json                  
+├── postcss.config.mjs             
+├── package.json                   
+├── pnpm-lock.yaml                 
+└── README.md                     
 ```
 
 ## 📱 Comportamento Responsivo
