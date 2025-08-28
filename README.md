@@ -2,7 +2,7 @@
 
 Este projeto é um portfolio pessoal moderno e interativo que demonstra as habilidades, experiências e projetos de Bernardo de Resende, desenvolvedor fullstack e estudante de Engenharia de Software. O website apresenta uma interface futurística com animações suaves e design responsivo, proporcionando uma experiência envolvente para mostrar competências técnicas e trajetória profissional.
 
-**🌐 [Acessar Site Hospedado](https://bernardo-portifolio-liard.vercel.app/)**
+**🌐 [Acessar Site Hospedado](https://bernardoresende.vercel.app/)**
 ## 🎨 Design e Prototipação
 
 ### Wireframe
