@@ -22,7 +22,7 @@ const translations = {
     "resume.title": "Bernardo de Resende",
     "resume.subtitle": "Engenheiro de Software | Desenvolvedor Fullstack",
     "resume.description":
-      "Transformando ideias complexas em soluções tecnológicas escaláveis.",
+      "Transformando ideias complexas em soluções inteligentes.",
     "resume.downloadCV": "Download CV",
     "resume.contact": "Entre em Contato",
 
@@ -208,7 +208,7 @@ const translations = {
     "resume.title": "Bernardo de Resende",
     "resume.subtitle": "Software Engineer | Fullstack Developer",
     "resume.description":
-      "Transforming complex ideas into scalable technological solutions.",
+      "Transforming complex ideas into smart solutions.",
     "resume.downloadCV": "Download Resume",
     "resume.contact": "Get in Touch",
 

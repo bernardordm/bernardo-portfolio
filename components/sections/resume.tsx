@@ -66,16 +66,6 @@ export function ResumeSection({ inView }: ResumeSectionProps) {
           )}
         >
           <Button
-            size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-primary/50 transition-all duration-300"
-            onClick={() => {
-              console.log("Download CV")
-            }}
-          >
-            <DownloadIcon className="w-5 h-5 mr-2" />
-            {t('resume.downloadCV')}
-          </Button>
-          <Button
             variant="outline"
             size="lg"
             className="border-primary text-primary hover:bg-primary/10 bg-transparent shadow-lg hover:shadow-primary/50 transition-all duration-300"
