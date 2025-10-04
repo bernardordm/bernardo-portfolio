@@ -13,6 +13,85 @@ import { InterestsSection } from "@/components/sections/interests";
 import { AcademicSection } from "@/components/sections/academic";
 import { ContactSection } from "@/components/sections/contact";
 
+/**
+ * CORREÇÃO 3: Repetição excessiva de hooks useInView
+ * PROBLEMA: 8 hooks useInView individuais causam overhead desnecessário
+ * SOLUÇÃO SUGERIDA: Criar hook customizado único para gerenciar todas seções
+ * BENEFÍCIO: Redução significativa de re-renders, código mais limpo
+ * 
+ * // Hook customizado sugerido:
+ * // const useActiveSection = () => {
+ * //   const [activeSection, setActiveSection] = useState("resume");
+ * //   const sectionsRef = useRef<HTMLElement[]>([]);
+ * //   
+ * //   useEffect(() => {
+ * //     const observer = new IntersectionObserver((entries) => {
+ * //       entries.forEach(entry => {
+ * //         if (entry.isIntersecting) {
+ * //           setActiveSection(entry.target.id);
+ * //         }
+ * //       });
+ * //     }, { threshold: 0.3 });
+ * //     
+ * //     sectionsRef.current.forEach(section => observer.observe(section));
+ * //     return () => observer.disconnect();
+ * //   }, []);
+ * //   
+ * //   return { activeSection, sectionsRef };
+ * // };
+ */
+
+/**
+ * CORREÇÃO 4: useEffect ineficiente para activeSection
+ * PROBLEMA: Chain de if/else com 8 dependências causa re-renders excessivos
+ * SOLUÇÃO SUGERIDA: Usar useMemo ou lógica baseada em scroll position
+ * BENEFÍCIO: Menos ciclos de renderização, melhor performance
+ * 
+ * // Solução sugerida com useMemo:
+ * // const activeSection = useMemo(() => {
+ * //   const sections = [
+ * //     { name: "resume", inView: resumeInView },
+ * //     { name: "about", inView: aboutInView },
+ * //     // ... outras seções
+ * //   ];
+ * //   return sections.find(section => section.inView)?.name || "resume";
+ * // }, [resumeInView, aboutInView, ...otherDependencies]);
+ */
+
+/**
+ * CORREÇÃO 18: Estado local excessivo
+ * PROBLEMA: activeSection poderia ser derivado da URL ou scroll position
+ * SOLUÇÃO SUGERIDA: Usar URL como source of truth
+ * BENEFÍCIO: Single source of truth, menos bugs de sincronização
+ *
+ * // Solução com URL hash:
+ * // const [activeSection, setActiveSection] = useState(() => {
+ * //   if (typeof window !== 'undefined') {
+ * //     return window.location.hash.slice(1) || 'resume';
+ * //   }
+ * //   return 'resume';
+ * // });
+ * // 
+ * // useEffect(() => {
+ * //   const handleHashChange = () => {
+ * //     setActiveSection(window.location.hash.slice(1) || 'resume');
+ * //   };
+ * //   window.addEventListener('hashchange', handleHashChange);
+ * //   return () => window.removeEventListener('hashchange', handleHashChange);
+ * // }, []);
+ */
+
+/**
+ * CORREÇÃO 20: Magic numbers
+ * PROBLEMA: threshold: 0.3 hardcoded, sem explicação
+ * SOLUÇÃO SUGERIDA: Usar constantes nomeadas
+ * BENEFÍCIO: Código mais legível, fácil de ajustar
+ * 
+ * // Constantes sugeridas:
+ * // const INTERSECTION_THRESHOLD = 0.3; // 30% da seção visível para ativar
+ * // const INTERSECTION_ROOT_MARGIN = '0px 0px -20% 0px'; // Ativa antes da seção aparecer
+ */
+
 export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState("resume");
 

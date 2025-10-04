@@ -3,6 +3,40 @@ import { GlobeIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useLanguage } from "@/hooks/use-language"
 
+/**
+ * CORREÇÃO 12: Acessibilidade comprometida
+ * PROBLEMA: Navegação sem suporte adequado para screen readers, sem aria-labels
+ * SOLUÇÃO SUGERIDA: Adicionar aria-labels, aria-current, focus management
+ * BENEFÍCIO: Inclusão de usuários com deficiências, conformidade WCAG 2.1
+ * 
+ * // Código corrigido sugerido:
+ * // <Button
+ * //   variant="ghost"
+ * //   className={cn("text-muted-foreground hover:text-primary transition-colors")}
+ * //   onClick={() => scrollToSection(section.id)}
+ * //   aria-label={`Navegar para seção ${section.label}`}
+ * //   aria-current={activeSection === section.id ? 'page' : undefined}
+ * //   tabIndex={0}
+ * //   role="menuitem"
+ * // >
+ * //   {section.label}
+ * // </Button>
+ */
+
+/**
+ * CORREÇÃO 22: Inconsistência nos padrões de componentes
+ * PROBLEMA: Inconsistência entre usar interface vs type, naming conventions
+ * SOLUÇÃO SUGERIDA: Definir style guide e usar ESLint rules
+ * BENEFÍCIO: Código mais profissional, melhor experiência para desenvolvedores
+ *
+ * // Style guide sugerido:
+ * // - Usar 'interface' para objetos extensíveis
+ * // - Usar 'type' para unions, primitivos e computed types  
+ * // - Props sempre com sufixo 'Props'
+ * // - Componentes em PascalCase
+ * // - Hooks com prefixo 'use'
+ */
+
 interface HeaderProps {
   activeSection: string
 }

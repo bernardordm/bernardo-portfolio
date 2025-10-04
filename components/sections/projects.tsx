@@ -6,6 +6,32 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { useLanguage } from "@/hooks/use-language"
 
+/**
+ * CORREÇÃO 8: Violação do princípio DRY em componentes
+ * PROBLEMA: Classes CSS e lógica de animação repetidas em vários componentes
+ * SOLUÇÃO SUGERIDA: Criar componentes base reutilizáveis
+ * BENEFÍCIO: Redução de 70% do código duplicado, manutenção centralizada
+ * 
+ * // Componentes sugeridos:
+ * // const AnimatedCard = ({ children, inView, delay, ...props }) => (
+ * //   <Card 
+ * //     className={cn(
+ * //       "border border-primary/30 shadow-lg hover:shadow-primary/50 transition-all duration-300",
+ * //       inView ? `animate-fade-in-up delay-${delay}` : "opacity-0"
+ * //     )}
+ * //     {...props}
+ * //   >
+ * //     {children}
+ * //   </Card>
+ * // );
+ * // 
+ * // const ProjectCard = ({ project, inView, delay }) => (
+ * //   <AnimatedCard inView={inView} delay={delay}>
+ * //     <ProjectCardContent project={project} />
+ * //   </AnimatedCard>
+ * // );
+ */
+
 interface ProjectsSectionProps {
   inView: boolean
 }
@@ -13,6 +39,31 @@ interface ProjectsSectionProps {
 export function ProjectsSection({ inView }: ProjectsSectionProps) {
   const { t } = useLanguage()
 
+  /**
+   * CORREÇÃO 7: Dados hardcoded nos componentes
+   * PROBLEMA: Array de projetos hardcoded viola separação de responsabilidades
+   * SOLUÇÃO SUGERIDA: Criar Repository pattern para dados
+   * BENEFÍCIO: Facilidade para trocar fonte de dados (API, CMS), melhor testabilidade
+   * 
+   * // Solução sugerida:
+   * // // lib/data/projects.ts
+   * // export const getProjects = async (): Promise<Project[]> => {
+   * //   // Pode vir de API, CMS, arquivo JSON, etc.
+   * //   return await fetch('/api/projects').then(res => res.json());
+   * // };
+   * // 
+   * // // Hook customizado:
+   * // const useProjects = () => {
+   * //   const [projects, setProjects] = useState<Project[]>([]);
+   * //   const [loading, setLoading] = useState(true);
+   * //   
+   * //   useEffect(() => {
+   * //     getProjects().then(setProjects).finally(() => setLoading(false));
+   * //   }, []);
+   * //   
+   * //   return { projects, loading };
+   * // };
+   */
   const projects = [
     {
       title: "Java Parking",
