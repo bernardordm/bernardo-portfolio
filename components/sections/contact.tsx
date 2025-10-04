@@ -8,6 +8,25 @@ import { MailIcon, PhoneIcon, LinkedinIcon, GithubIcon, InstagramIcon, SendIcon,
 import { cn } from "@/lib/utils"
 import { useLanguage } from "@/hooks/use-language"
 
+/**
+ * CORREÇÃO 15: Tipagem TypeScript inadequada
+ * PROBLEMA: Interfaces muito básicas, sem validação runtime
+ * SOLUÇÃO SUGERIDA: Implementar tipagem forte com Zod
+ * BENEFÍCIO: Detecção de erros em desenvolvimento, código mais confiável
+ * 
+ * // Código sugerido com Zod:
+ * // import { z } from 'zod'
+ * // 
+ * // const contactFormSchema = z.object({
+ * //   name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
+ * //   email: z.string().email('Email deve ter formato válido'),
+ * //   subject: z.string().min(5, 'Assunto deve ter pelo menos 5 caracteres'),
+ * //   message: z.string().min(10, 'Mensagem deve ter pelo menos 10 caracteres'),
+ * // })
+ * // 
+ * // type FormData = z.infer<typeof contactFormSchema>
+ */
+
 interface ContactSectionProps {
   inView: boolean
 }
@@ -40,6 +59,24 @@ export function ContactSection({ inView }: ContactSectionProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle')
 
+  /**
+   * CORREÇÃO 9: Exposição de credenciais sensíveis
+   * PROBLEMA: Credenciais hardcoded no código frontend ficam expostas publicamente
+   * SOLUÇÃO SUGERIDA: Usar variáveis de ambiente
+   * BENEFÍCIO: Proteção contra uso indevido, segurança adequada
+   *
+   * // Código corrigido sugerido:
+   * // const emailjsConfig = {
+   * //   serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+   * //   templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+   * //   publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '',
+   * // }
+   * // 
+   * // // Validação de ambiente:
+   * // if (!emailjsConfig.serviceId || !emailjsConfig.templateId || !emailjsConfig.publicKey) {
+   * //   console.error('EmailJS configuration missing. Check environment variables.');
+   * // }
+   */
   const emailjsConfig = {
     serviceId: 'service_ksy4dbc',
     templateId: 'template_ikrvt3q',

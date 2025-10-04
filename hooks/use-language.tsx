@@ -1,5 +1,34 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
+/**
+ * CORREÇÃO 6: Context gigante sem otimização
+ * PROBLEMA: Object de traduções gigante sempre em memória sem lazy loading
+ * SOLUÇÃO SUGERIDA: Implementar lazy loading de traduções
+ * BENEFÍCIO: Redução significativa do bundle size, carregamento sob demanda
+ * 
+ * // Solução com lazy loading sugerida:
+ * // const loadTranslations = async (language: Language) => {
+ * //   const translations = await import(`../locales/${language}.json`);
+ * //   return translations.default;
+ * // };
+ * // 
+ * // // Ou usando React.lazy para componentes:
+ * // const LazyTranslations = React.lazy(() => import(`../locales/${language}.tsx`));
+ */
+
+/**
+ * CORREÇÃO 19: Falta de cache e memoização
+ * PROBLEMA: Função de tradução recriada a cada render sem memoização
+ * SOLUÇÃO SUGERIDA: Implementar useCallback e memoização das traduções
+ * BENEFÍCIO: Prevenção de re-renders, melhor performance geral
+ *
+ * // Solução com memoização sugerida:
+ * // const translationsCache = useMemo(() => translations[language], [language]);
+ * // const t = useCallback((key: string): string => {
+ * //   return translationsCache[key as keyof typeof translationsCache] || key;
+ * // }, [translationsCache]);
+ */
+
 type Language = "pt" | "en";
 
 interface LanguageContextType {
@@ -8,6 +37,18 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
+/**
+ * CORREÇÃO 7: Dados hardcoded nos componentes
+ * PROBLEMA: Translations object gigante hardcoded viola separação de responsabilidades
+ * SOLUÇÃO SUGERIDA: Separar em arquivos JSON ou usar CMS
+ * BENEFÍCIO: Facilidade para adicionar idiomas, melhor organização
+ * 
+ * // Estrutura sugerida:
+ * // /locales/
+ * //   pt.json
+ * //   en.json
+ * //   index.ts (para carregar dinamicamente)
+ */
 const translations = {
   pt: {
     "nav.about": "Sobre Mim",
